@@ -1,1 +1,38 @@
-<p>home works!</p>
+<div class="home">
+  <app-menu></app-menu>
+
+  <div class="home__container">
+    <app-topbar></app-topbar>
+
+    <section class="home__content">
+      <div class="home__wrapper">
+        <div class="home__header">
+          <h2>Registros</h2>
+          <a (click)="handleAddRegister()" class="home__button"
+            ><i class="fas fa-plus"></i> Registrar nuevo vehículo</a
+          >
+        </div>
+        <app-table
+          *ngIf="registers.length >= 1"
+          [columns]="[
+            'Placa',
+            'Fecha de Ingreso',
+            'Fecha de Vencimiento',
+            'Type de Servicio',
+            'Estado del Servicio',
+            'Ver/Editar'
+          ]"
+          [items]="registers"
+          (deleteClicked)="handleDeleteRegister($event)"
+          (editClicked)="handleEditRegister($event)"
+        ></app-table>
+
+        <div class="home__wrapper-null" *ngIf="registers.length === 0">
+          <h3>Aún no has creado ningún registro</h3>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<app-register></app-register>
