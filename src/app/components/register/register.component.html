@@ -1,1 +1,171 @@
-<p>register works!</p>
+<div class="modal__container">
+  <div class="modal__content">
+    <form [formGroup]="form">
+      <h2 class="modal__title">
+        {{ isEditModeEnabled ? "Editar" : "Registrar" }} vehículo
+      </h2>
+
+      <div>
+        <div class="modal__input-container">
+          <input
+            class="modal__input"
+            type="text"
+            required
+            formControlName="typeService"
+          />
+          <span class="modal__label">Tipo de Servicio *</span>
+        </div>
+        <small class="modal__input-error" *ngIf="invalidField('typeService')"
+          >El tipo de servicio es obligatorio</small
+        >
+      </div>
+
+      <div>
+        <div class="modal__input-container">
+          <input
+            class="modal__input"
+            type="text"
+            required
+            formControlName="typeVehicle"
+          />
+          <span class="modal__label">Tipo de Vehículo *</span>
+        </div>
+        <small class="modal__input-error" *ngIf="invalidField('typeVehicle')"
+          >El tipo de vehículo es obligatorio</small
+        >
+      </div>
+
+      <div>
+        <div class="modal__input-container">
+          <input
+            class="modal__input"
+            type="text"
+            required
+            formControlName="plate"
+          />
+          <span class="modal__label">Placa del Vehículo *</span>
+        </div>
+        <small class="modal__input-error" *ngIf="invalidField('plate')"
+          >La placa del vehículo es obligatoria</small
+        >
+      </div>
+
+      <div>
+        <div class="modal__input-container">
+          <input
+            class="modal__input"
+            type="text"
+            required
+            formControlName="ownerName"
+          />
+          <span class="modal__label">Nombre del Propietario *</span>
+        </div>
+        <small class="modal__input-error" *ngIf="invalidField('ownerName')"
+          >El nombre del propietario es obligatorio</small
+        >
+      </div>
+
+      <div>
+        <div class="modal__input-container">
+          <input
+            class="modal__input"
+            type="text"
+            required
+            formControlName="ownerNumber"
+          />
+          <span class="modal__label">Número del Propietario *</span>
+        </div>
+        <small class="modal__input-error" *ngIf="invalidField('ownerNumber')"
+          >El número del propietario es obligatorio</small
+        >
+      </div>
+
+      <div>
+        <div class="modal__input-container">
+          <input
+            class="modal__input"
+            type="text"
+            required
+            formControlName="entryDate"
+          />
+          <span class="modal__label">Fecha de Ingreso *</span>
+        </div>
+        <small class="modal__input-error" *ngIf="invalidField('entryDate')"
+          >La fecha de ingreso es obligatoria</small
+        >
+      </div>
+
+      <div>
+        <div class="modal__input-container">
+          <input
+            class="modal__input"
+            type="text"
+            required
+            formControlName="departureDate"
+          />
+          <span class="modal__label">Fecha de Salida *</span>
+        </div>
+        <small class="modal__input-error" *ngIf="invalidField('departureDate')"
+          >La fecha de salida es obligatoria</small
+        >
+      </div>
+
+      <div>
+        <div class="modal__input-container">
+          <input
+            class="modal__input"
+            type="text"
+            required
+            formControlName="receivableValue"
+          />
+          <span class="modal__label">Valor a Cobrar *</span>
+        </div>
+        <small
+          class="modal__input-error"
+          *ngIf="invalidField('receivableValue')"
+          >El valor a cobrar es obligatorio</small
+        >
+      </div>
+
+      <div>
+        <div class="modal__input-container">
+          <input class="modal__input" type="text" formControlName="moneyPaid" />
+          <span class="modal__label">Abono (opcional)</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal__input-container">
+          <input
+            class="modal__input"
+            type="text"
+            formControlName="remainigMoney"
+          />
+          <span class="modal__label">Restante</span>
+        </div>
+      </div>
+
+      <div class="modal__input-container">
+        <input
+          *ngIf="!isEditModeEnabled"
+          class="modal__button"
+          type="submit"
+          (click)="saveVehicle()"
+          value="Crear"
+        />
+
+        <input
+          *ngIf="isEditModeEnabled"
+          class="modal__button"
+          type="submit"
+          (click)="editedVehicle()"
+          value="Editar"
+        />
+      </div>
+    </form>
+
+    <a class="modal__close" (click)="closeModal()">
+      <img src="assets/img/cancel.png" alt="times-icon"
+    /></a>
+  </div>
+</div>
