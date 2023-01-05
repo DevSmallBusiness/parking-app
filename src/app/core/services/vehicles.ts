@@ -5,7 +5,7 @@ import { Vehicle } from 'src/app/core/models/vehicle';
   providedIn: 'root',
 })
 export class Database {
-  vehicles: Vehicle[] = require("../../../data/vehicles.json")
+  vehicles: Vehicle[] = require('../../../data/vehicles.json');
 
   constructor() {}
 
@@ -20,5 +20,9 @@ export class Database {
     }
 
     return vehicle;
+  }
+
+  save(vehicle: Vehicle): void {
+    this.vehicles.push(vehicle);
   }
 }

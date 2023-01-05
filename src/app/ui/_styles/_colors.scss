@@ -1,0 +1,61 @@
+$_red-20: #f93548;
+$_red-10: #ff6675;
+$_red-0: #f5cad8;
+
+$_green-10: #56ae50;
+$_green-0: #d6e19a;
+
+$_blue-10: #4ca1be;
+$_blue-0: #bfdedc;
+
+$_orange-30: #ff6a00;
+$_orange-20: #f7972b;
+$_orange-15: #f39c12;
+$_orange-10: #f6c486;
+$_orange-0: #f0c280;
+
+$_yellow-10: #fdd923;
+$_yellow-0: #fbe69c;
+
+$_neutral-60: #242121;
+$_neutral-50: #0d1117;
+$_neutral-40: #111010;
+$_neutral-30: #727272;
+$_neutral-20: #bfbfbf;
+$_neutral-10: #e0e0e0;
+$_neutral-5: #f7f7fa;
+$_neutral-0: #ffffff;
+
+$primary-color: $_orange-30;
+$primary-color-alt: $_orange-20;
+$primary-color-light: $_orange-10;
+
+$bg-white: $_neutral-10;
+$bg-lighter: $_neutral-5;
+$bg-dark: $_neutral-20;
+$bg-black: $_neutral-50;
+$bg-black-alt: $_neutral-60;
+$bg-blue-dark: #443022;
+
+$status-info: $_blue-0;
+$status-info-dark: $_blue-10;
+
+$status-success: $_green-0;
+$status-success-dark: $_green-10;
+
+$status-warning: $_yellow-0;
+$status-warning-dark: $_yellow-10;
+
+$status-error: $_orange-0;
+$status-error-dark: $_orange-10;
+
+$bor-light: $_neutral-10;
+$bor: $_neutral-20;
+
+$typo-base: $_neutral-40;
+$typo-light: $_neutral-30;
+$typo-contrast: $_neutral-0;
+
+$opacity-dark: rgba($_neutral-40, 0.5);
+
+$icon-base: $_neutral-40;
