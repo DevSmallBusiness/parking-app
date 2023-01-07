@@ -1,0 +1,10 @@
+@use "../../_styles/index.scss" as styles;
+
+.icon {
+  height: styles.$box-hht-double;
+  width: styles.$box-wth-double;
+  display: block;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
