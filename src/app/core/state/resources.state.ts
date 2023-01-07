@@ -6,13 +6,17 @@ import { StateFactory } from './factory.state';
   providedIn: 'root',
 })
 export class ResourcesState {
-  private isSidebarClose$: BehaviorSubject<boolean> = new BehaviorSubject(null);
+  private isSidebarClose$: BehaviorSubject<boolean> = new BehaviorSubject(
+    false
+  );
+  private isLoading$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor(private factory: StateFactory) {}
 
   store() {
     return {
       isSidebarClose: this.factory.state(this.isSidebarClose$),
+      isLoading: this.factory.state(this.isLoading$),
     };
   }
 }

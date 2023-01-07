@@ -1,0 +1,55 @@
+@use "../../_styles/index.scss" as styles;
+
+.vehicle-registration {
+  &__wrapper {
+    position: relative;
+    min-height: styles.func-toRem(33.125);
+    height: styles.$box-hht-block;
+    background-image: linear-gradient(
+      rgba(56, 139, 253, 0.1),
+      rgba(56, 139, 253, 0.1)
+    );
+    border-color: rgba(56, 139, 253, 0.1);
+    color: styles.$color-bg-white;
+    padding: styles.$box-pad-none styles.func-toRem(1.875);
+    width: styles.$box-wth-block;
+  }
+
+  &__header {
+    padding-top: styles.func-toRem(1.875);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: styles.func-toRem(2);
+  }
+
+  &__td {
+    padding: styles.$box-pad-half;
+    max-width: styles.$box-wth-column-list;
+
+    &--buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: styles.$box-pad-base;
+    }
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    margin-top: styles.$box-mrg-base;
+  }
+}
+
+@media (max-width: 480px) {
+  .vehicle-registration {
+    &__header {
+      text-align: center;
+      gap: styles.func-toRem(0.625);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: styles.func-toRem(0.938);
+    }
+  }
+}

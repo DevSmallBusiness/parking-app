@@ -1,0 +1,126 @@
+<div class="vehicle-registration__wrapper">
+  <div class="vehicle-registration__header">
+    <app-text
+      [text]="'Registros'"
+      [weight]="'bold'"
+      [size]="'medium'"
+      [color]="'white'"
+    ></app-text>
+    <app-button
+      [type]="'static'"
+      [display]="'inline'"
+      [icon]="'plus-circle'"
+      [label]="'Registrar nuevo vehículo'"
+      (clicked)="modalRef.toggle()"
+    ></app-button>
+  </div>
+
+  <app-table
+    [headers]="[
+      ['Placa', '4rem'],
+      ['Fecha de Ingreso', '4rem'],
+      ['Fecha de Vencimiento', '4rem'],
+      ['Typo de Servicio', '4rem'],
+      ['Estado del Servicio', '4rem'],
+      ['Acciones', '2rem']
+    ]"
+    [items]="vehicles || []"
+    [itemTemplateRef]="vehiclesRegistrationTemplate"
+    [isLoading]="isLoading"
+  ></app-table>
+</div>
+
+<ng-template #vehiclesRegistrationTemplate let-vehicle="item" let-index="index">
+  <td class="vehicle-registration__td">
+    <app-text
+      [text]="vehicle?.plate"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></app-text>
+  </td>
+  <td class="vehicle-registration__td">
+    <app-text
+      [type]="'date'"
+      [text]="vehicle?.entryDate"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></app-text>
+  </td>
+  <td class="vehicle-registration__td">
+    <app-text
+      [type]="'date'"
+      [text]="vehicle?.departureDate"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></app-text>
+  </td>
+  <td class="vehicle-registration__td">
+    <app-text
+      [text]="vehicle?.typeService"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></app-text>
+  </td>
+  <td class="vehicle-registration__td">
+    <app-text
+      [text]="vehicle?.serviceState"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></app-text>
+  </td>
+
+  <td class="vehicle-registration__td vehicle-registration__td--buttons">
+    <app-button
+      [display]="'block'"
+      [icon]="'edit'"
+      [type]="'static'"
+      (clicked)="handleLoadVehicleToUpdate(vehicle.id); modalUpdateRef.toggle()"
+    ></app-button>
+    <app-button
+      [display]="'block'"
+      [icon]="'trash-alt'"
+      [type]="'static'"
+      (clicked)="modalDeleteRef.toggle()"
+    ></app-button>
+  </td>
+</ng-template>
+
+<app-modal #modalRef>
+  <ng-container>
+    <!-- <app-form-vehicle
+      [canResetForm]="canCloseModal"
+      (dataOutput)="handleCreateVehicle($event)"
+    ></app-form-vehicle> -->
+  </ng-container>
+</app-modal>
+
+<app-modal #modalUpdateRef>
+  <ng-container>
+    <!-- <app-form-vehicle
+      [dataInput]="channelToUpdate"
+      [canResetForm]="canCloseModal"
+      (dataOutput)="handleUpdateChannel($event)"
+    ></app-form-vehicle> -->
+  </ng-container>
+</app-modal>
+
+<app-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <app-text
+      [text]="'¿Estás seguro de que deseas eliminar este comunicado?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></app-text>
+    <app-button
+      class="vehicle-registration__button"
+      [label]="'Eliminar'"
+      [type]="'static'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteVehicle()"
+    ></app-button>
+  </ng-container>
+</app-modal>
