@@ -3,15 +3,9 @@ import { CommonModule } from '@angular/common';
 import { CapitalizePipe } from './capitalize.pipe';
 import { NoimagePipe } from './noimage.pipe';
 
-
-
 @NgModule({
-  declarations: [
-    CapitalizePipe,
-    NoimagePipe
-  ],
-  imports: [
-    CommonModule
-  ]
+  declarations: [CapitalizePipe, NoimagePipe],
+  imports: [CommonModule],
+  exports: [CapitalizePipe, NoimagePipe],
 })
-export class PipesModule { }
+export class PipesModule {}

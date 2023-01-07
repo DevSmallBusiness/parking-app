@@ -1,8 +1,10 @@
+@use "../../_styles/index.scss" as styles;
+
 .navbar {
   &__container {
     position: fixed;
     width: 15%;
-    height: 100%;
+    height: styles.$box-hht-block;
     transition: 0.5s;
     overflow: hidden;
     background-image: linear-gradient(
@@ -19,25 +21,25 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: styles.$box-wth-block;
   }
 
   &__item {
     position: relative;
-    width: 100%;
+    width: styles.$box-wth-block;
     list-style: none;
 
     &:hover {
-      background: #03a9f4;
+      background: styles.$color-bg-blue-ligth;
     }
 
     &--main {
-      font-size: 20px;
-      margin-bottom: 20px;
+      font-size: styles.func-toRem(1.25);
+      margin-bottom: styles.func-toRem(1.25);
     }
 
     &--main:hover {
-      background: transparent;
+      background: styles.$color-bg-transparent;
     }
   }
 
@@ -45,27 +47,27 @@
     cursor: pointer;
     position: relative;
     display: block;
-    width: 100%;
+    width: styles.$box-wth-block;
     display: flex;
     text-decoration: none;
-    color: #fff;
+    color: styles.$color-bg-white;
   }
 
   &__icon {
     position: relative;
     display: block;
-    min-width: 60px;
-    height: 60px;
-    line-height: 60px;
+    min-width: styles.func-toRem(3.75);
+    height: styles.func-toRem(3.75);
+    line-height: styles.func-toRem(3.75);
     text-align: center;
   }
 
   &__text {
     position: relative;
     display: block;
-    padding: 0 10px;
-    height: 60px;
-    line-height: 60px;
+    padding: styles.$box-pad-none styles.func-toRem(0.625);
+    height: styles.func-toRem(3.75);
+    line-height: styles.func-toRem(3.75);
     white-space: nowrap;
   }
 }
@@ -76,8 +78,8 @@
       left: -300px;
 
       &--active {
-        left: 0;
-        width: 300px;
+        left: styles.$box-mrg-none;
+        width: styles.func-toRem(18.75);
       }
     }
   }
@@ -86,14 +88,14 @@
 @media (max-width: 480px) {
   .navbar {
     &__container {
-      width: 100%;
+      width: styles.$box-wth-block;
       left: -100%;
-      z-index: 1000;
-      background: linear-gradient(#141e30, #243b55);
+      z-index: styles.$box-z-13;
+      background: linear-gradient(styles.$color-bg-black-alt, styles.$color-typo-base);
 
       &--active {
-        left: 0;
-        width: 100%;
+        left: styles.$box-mrg-none;
+        width: styles.$box-wth-block;
       }
     }
   }
