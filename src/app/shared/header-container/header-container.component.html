@@ -1,3 +1,10 @@
-<ng-container>
-  <app-navbar></app-navbar>
+<ng-container
+  *ngIf="{
+    isSidebarClose: (isSidebarClose$ | async)
+  } as data"
+>
+  <app-navbar
+    [isSidebarClose]="data.isSidebarClose"
+    (toggleSidebar)="handleSetIsSidebarClose($event)"
+  ></app-navbar>
 </ng-container>

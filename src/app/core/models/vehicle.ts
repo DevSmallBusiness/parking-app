@@ -2,7 +2,7 @@ import { ServiceStatesEnum } from 'src/app/core/enums/service-states.enum';
 import { TypeServiceEnum } from 'src/app/core/enums/type-service.enum';
 import { TypeVehicleEnum } from 'src/app/core/enums/type-vehicle.enum';
 
-export interface Vehicle {
+export interface VehicleModel {
   id?: string;
   typeService?: TypeServiceEnum;
   typeVehicle?: TypeVehicleEnum;

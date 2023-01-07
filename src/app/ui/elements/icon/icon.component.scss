@@ -1,0 +1,5 @@
+@use "../../_styles/index.scss" as styles;
+
+.icon {
+  font-size: styles.func-toRem(1.4);
+}

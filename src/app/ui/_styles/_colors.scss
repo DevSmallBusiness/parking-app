@@ -5,6 +5,7 @@ $_red-0: #f5cad8;
 $_green-10: #56ae50;
 $_green-0: #d6e19a;
 
+$_blue-20: #03a9f4;
 $_blue-10: #4ca1be;
 $_blue-0: #bfdedc;
 
@@ -26,16 +27,14 @@ $_neutral-10: #e0e0e0;
 $_neutral-5: #f7f7fa;
 $_neutral-0: #ffffff;
 
-$primary-color: $_orange-30;
-$primary-color-alt: $_orange-20;
-$primary-color-light: $_orange-10;
-
 $bg-white: $_neutral-10;
 $bg-lighter: $_neutral-5;
 $bg-dark: $_neutral-20;
 $bg-black: $_neutral-50;
 $bg-black-alt: $_neutral-60;
-$bg-blue-dark: #443022;
+$bg-blue-ligth: $_blue-20;
+$bg-blue-dark: $_neutral-50;
+$bg-transparent: transparent;
 
 $status-info: $_blue-0;
 $status-info-dark: $_blue-10;

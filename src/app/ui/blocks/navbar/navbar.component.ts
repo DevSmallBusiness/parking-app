@@ -1,28 +1,28 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
-  isCollapsed: boolean = false;
-  collapsedIconClass = 'fas fa-angle-double-left';
+  @Input() isSidebarClose: boolean;
+  @Output() toggleSidebar: EventEmitter<boolean> = new EventEmitter();
 
-  toggleMenu(): void {
-    document
-      .querySelector('.topbar__action')
-      ?.classList.toggle('topbar__action--active');
-    document
-      .querySelector('.navbar__container')
-      ?.classList.toggle('navbar__container--active');
-    document
-      .querySelector('.home__container')
-      ?.classList.toggle('home__container--active');
+  handleToggleMenu(): void {
+    this.toggleSidebar.emit(!this.isSidebarClose);
+  }
 
-    this.isCollapsed = !this.isCollapsed;
-    this.isCollapsed
-      ? (this.collapsedIconClass = 'fas fa-angle-double-right')
-      : (this.collapsedIconClass = 'fas fa-angle-double-left');
+  get iconItemMain(): string {
+    return this.isSidebarClose
+      ? 'chevrons-right'
+      : 'chevrons-left';
   }
 }
