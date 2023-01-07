@@ -13,7 +13,7 @@
     );
 
     &--active {
-      width: 5%;
+      width: styles.func-toRem(3.75);
     }
   }
 
@@ -28,6 +28,7 @@
     position: relative;
     width: styles.$box-wth-block;
     list-style: none;
+    transition: 0.2s ease-in-out;
 
     &:hover {
       background: styles.$color-bg-blue-ligth;
@@ -91,7 +92,10 @@
       width: styles.$box-wth-block;
       left: -100%;
       z-index: styles.$box-z-13;
-      background: linear-gradient(styles.$color-bg-black-alt, styles.$color-typo-base);
+      background: linear-gradient(
+        styles.$color-bg-black-alt,
+        styles.$color-typo-base
+      );
 
       &--active {
         left: styles.$box-mrg-none;

@@ -11,7 +11,7 @@ export class TextComponent {
   @Input() size: 'micro' | 'small' | 'base' | 'medium' | 'extra-large' = 'base';
   @Input() weight: 'light' | 'regular' | 'bold' = 'regular';
   @Input() style: 'none' | 'italic' = 'none';
-  @Input() color: 'initial' | 'light' = 'initial';
+  @Input() color: 'initial' | 'white' | 'light' = 'initial';
   @Input() clamp: number | undefined;
   @Input() text: string | undefined;
 }
