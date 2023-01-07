@@ -66,6 +66,10 @@
     color: styles.$color-typo-light;
   }
 
+  &--white {
+    color: styles.$color-bg-white;
+  }
+
   // style
   &--italic {
     font-style: italic;
