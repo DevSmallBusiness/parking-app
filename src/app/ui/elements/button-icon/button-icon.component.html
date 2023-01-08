@@ -1,1 +1,8 @@
-<p>button-icon works!</p>
+<button
+  class="button-icon"
+  type="button"
+  [disabled]="isDisabled"
+  (click)="handleClick()"
+>
+  <app-icon [icon]="icon"></app-icon>
+</button>

@@ -13,7 +13,7 @@ import { HeaderContainerFacade } from './header-container.facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderContainerComponent implements OnInit, OnDestroy {
-  public isSidebarClose$: Observable<boolean>;
+  isSidebarClose$: Observable<boolean>;
 
   constructor(private facade: HeaderContainerFacade) {}
 

@@ -1,11 +1,13 @@
 <nav
   class="navbar__container"
-  [ngClass]="{ 'navbar__container--active': isSidebarClose }"
+  [ngClass]="{ 'navbar__container--active': !isSidebarClose }"
 >
   <ul class="navbar__list">
     <li class="navbar__item navbar__item--main">
       <a class="navbar__link" (click)="handleToggleMenu()">
-        <span class="navbar__icon"><app-icon [icon]="iconItemMain"></app-icon></span>
+        <span class="navbar__icon"
+          ><app-icon [icon]="iconItemMain"></app-icon
+        ></span>
       </a>
     </li>
 
@@ -27,21 +29,9 @@
 
     <li class="navbar__item">
       <a class="navbar__link">
-        <span class="navbar__icon"><app-icon [icon]="'edit'"></app-icon></span>
-        <span class="navbar__text">
-          <app-text
-            [text]="'Registrar'"
-            [weight]="'bold'"
-            [size]="'medium'"
-            [color]="'white'"
-          ></app-text>
-        </span>
-      </a>
-    </li>
-
-    <li class="navbar__item">
-      <a class="navbar__link">
-        <span class="navbar__icon"><app-icon [icon]="'hourglass'"></app-icon></span>
+        <span class="navbar__icon"
+          ><app-icon [icon]="'hourglass'"></app-icon
+        ></span>
         <span class="navbar__text">
           <app-text
             [text]="'Historial'"

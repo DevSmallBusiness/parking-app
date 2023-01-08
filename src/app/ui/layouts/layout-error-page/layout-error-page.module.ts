@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LayoutErrorPageComponent } from './layout-error-page.component';
 import { RouterModule } from '@angular/router';
+
+import { LayoutErrorPageComponent } from './layout-error-page.component';
 
 @NgModule({
   declarations: [LayoutErrorPageComponent],

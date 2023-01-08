@@ -1,1 +1,15 @@
-<p>button works!</p>
+<button
+  class="button button--{{ display }} button--{{ type }}"
+  type="button"
+  [ngClass]="{ 'button--disabled': isDisabled, 'button--active': isActive }"
+  [disabled]="isDisabled"
+  (click)="handleClick()"
+>
+  <app-icon *ngIf="icon" [icon]="icon"></app-icon>
+  <app-text
+    *ngIf="label"
+    [type]="'line'"
+    [weight]="'bold'"
+    [text]="label"
+  ></app-text>
+</button>

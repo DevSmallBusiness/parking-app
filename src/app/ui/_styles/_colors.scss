@@ -27,6 +27,10 @@ $_neutral-10: #e0e0e0;
 $_neutral-5: #f7f7fa;
 $_neutral-0: #ffffff;
 
+$primary-color: #3f5592;
+$primary-color-alt: #20304e;
+$primary-color-light: #16577563;
+
 $bg-white: $_neutral-10;
 $bg-lighter: $_neutral-5;
 $bg-dark: $_neutral-20;
@@ -45,7 +49,7 @@ $status-success-dark: $_green-10;
 $status-warning: $_yellow-0;
 $status-warning-dark: $_yellow-10;
 
-$status-error: $_orange-0;
+$status-error: $_red-20;
 $status-error-dark: $_orange-10;
 
 $bor-light: $_neutral-10;
