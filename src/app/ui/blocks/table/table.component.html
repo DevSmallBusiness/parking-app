@@ -13,13 +13,13 @@
             scope="col"
             [style.width]="label[1]"
           >
-            <app-text
+            <parking-text
               [color]="'white'"
               [type]="'line'"
               [text]="label[0]"
               [size]="'base'"
               [weight]="'bold'"
-            ></app-text>
+            ></parking-text>
           </th>
         </tr>
       </thead>
@@ -45,16 +45,16 @@
 </div>
 
 <ng-template #loading>
-  <app-loader></app-loader>
+  <parking-loader></parking-loader>
 </ng-template>
 
 <ng-template #notFound>
   <div class="table__notfound">
-    <app-text
+    <parking-text
       [color]="'white'"
       [size]="'extra-large'"
       [weight]="'bold'"
       [text]="'No se encontraron resultados.'"
-    ></app-text>
+    ></parking-text>
   </div>
 </ng-template>

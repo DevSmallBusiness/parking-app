@@ -9,7 +9,7 @@ import {
 import { VehicleModel } from 'src/app/core/models/vehicle';
 
 @Component({
-  selector: 'app-vehicle-registration',
+  selector: 'parking-vehicle-registration',
   templateUrl: './vehicle-registration.component.html',
   styleUrls: ['./vehicle-registration.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

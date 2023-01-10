@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { HeaderContainerFacade } from './header-container.facade';
 
 @Component({
-  selector: 'app-header-container',
+  selector: 'parking-header-container',
   templateUrl: './header-container.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

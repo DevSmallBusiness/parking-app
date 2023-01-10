@@ -9,7 +9,7 @@ import { VehicleModel } from 'src/app/core/models/vehicle';
 import { MainPageContainerFacade } from './main-page-container.facade';
 
 @Component({
-  selector: 'app-main-page-container',
+  selector: 'parking-main-page-container',
   templateUrl: './main-page-container.component.html',
   styleUrls: ['./main-page-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

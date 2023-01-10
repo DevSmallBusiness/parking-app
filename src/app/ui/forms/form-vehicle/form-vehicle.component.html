@@ -1,0 +1,8 @@
+<form class="form-vehicle-registration" [formGroup]="form.formGroup">
+  <parking-button
+    [label]="'Guardar'"
+    [type]="'static'"
+    [isDisabled]="form.formGroup.invalid || form.formGroup.disabled"
+    (clicked)="manualSave$.next()"
+  ></parking-button>
+</form>
