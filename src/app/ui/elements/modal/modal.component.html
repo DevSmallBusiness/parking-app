@@ -1,14 +1,14 @@
 <section *ngIf="isOpen" class="modal">
-  <app-card class="modal__card">
-    <app-button-icon
+  <parking-card class="modal__card">
+    <parking-button-icon
       *ngIf="canClose"
       class="modal__close"
       [icon]="'times'"
       (click)="toggle()"
-    ></app-button-icon>
+    ></parking-button-icon>
 
     <div class="modal__content" [ngClass]="{ 'modal__content--auto': auto }">
       <ng-content></ng-content>
     </div>
-  </app-card>
+  </parking-card>
 </section>

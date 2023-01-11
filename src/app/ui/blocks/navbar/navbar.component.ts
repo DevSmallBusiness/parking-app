@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'parking-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,8 +21,6 @@ export class NavbarComponent {
   }
 
   get iconItemMain(): string {
-    return this.isSidebarClose
-      ? 'chevrons-right'
-      : 'chevrons-left';
+    return this.isSidebarClose ? 'chevrons-right' : 'chevrons-left';
   }
 }

@@ -5,11 +5,11 @@
   [disabled]="isDisabled"
   (click)="handleClick()"
 >
-  <app-icon *ngIf="icon" [icon]="icon"></app-icon>
-  <app-text
+  <parking-icon *ngIf="icon" [icon]="icon"></parking-icon>
+  <parking-text
     *ngIf="label"
     [type]="'line'"
     [weight]="'bold'"
     [text]="label"
-  ></app-text>
+  ></parking-text>
 </button>

@@ -3,8 +3,8 @@
     isSidebarClose: (isSidebarClose$ | async)
   } as data"
 >
-  <app-navbar
+  <parking-navbar
     [isSidebarClose]="data.isSidebarClose"
     (toggleSidebar)="handleSetIsSidebarClose($event)"
-  ></app-navbar>
+  ></parking-navbar>
 </ng-container>

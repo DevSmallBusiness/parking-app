@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-button',
+  selector: 'parking-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,0 +1,34 @@
+<parking-dropdown
+  #dropdown
+  [icon]="icon"
+  [label]="label"
+  [placeholder]="placeholder"
+  [text]="optionSelectedLabel"
+  [tabid]="tabid"
+  [canDeleteText]="canDeleteText"
+  (deletedText)="resetOption()"
+>
+  <div *ngIf="showSearchable" class="sub-form-select__searchbox" header>
+    <input
+      class="sub-form-select__search"
+      type="search"
+      [placeholder]="'Buscar...'"
+      (input)="handleInput($event.target)"
+    />
+  </div>
+
+  <div class="sub-form-select__options">
+    <button
+      *ngFor="let option of optionsList; trackBy: trackIndex"
+      class="sub-form-select__option"
+      type="button"
+      (click)="handleClick($event, option?.id); dropdown.handleClose()"
+    >
+      <parking-text
+        [type]="'line'"
+        [size]="'small'"
+        [text]="option?.label"
+      ></parking-text>
+    </button>
+  </div>
+</parking-dropdown>
