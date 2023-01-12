@@ -1,6 +1,6 @@
 @use "../../_styles/index.scss" as styles;
 
-.form-vehicle-registration {
+.form-vehicle-record {
   display: grid;
   gap: styles.$box-pad-base;
   align-items: center;
@@ -22,7 +22,7 @@
 }
 
 @media (min-width: styles.$bkp-tablet) {
-  .form-vehicle-registration {
+  .form-vehicle-record {
     &__section {
       grid-template-columns: repeat(2, styles.$box-fr-base);
     }

@@ -1,1 +1,45 @@
-<p>sub-form-date works!</p>
+<div class="sub-form-date" [formGroup]="form.formGroup">
+  <label class="sub-form-date__label">
+    <div class="sub-form-date__text">
+      <parking-text
+        [type]="'text'"
+        [size]="'small'"
+        [weight]="'bold'"
+        [text]="label"
+      ></parking-text>
+
+      <div class="sub-form-date__inputs">
+        <input
+          class="sub-form-date__input"
+          [type]="'text'"
+          [placeholder]="'Día..'"
+          [maxlength]="2"
+          [formControlName]="form.formControlNames.day"
+          (keypress)="handleKeypress($event.key)"
+          (focus)="handleFocus()"
+          (blur)="handleBlur()"
+        />
+        <input
+          class="sub-form-date__input"
+          [type]="'text'"
+          [placeholder]="'Mes..'"
+          [maxlength]="2"
+          [formControlName]="form.formControlNames.month"
+          (keypress)="handleKeypress($event.key)"
+          (focus)="handleFocus()"
+          (blur)="handleBlur()"
+        />
+        <input
+          class="sub-form-date__input"
+          [type]="'text'"
+          [placeholder]="'Año..'"
+          [maxlength]="4"
+          [formControlName]="form.formControlNames.year"
+          (keypress)="handleKeypress($event.key)"
+          (focus)="handleFocus()"
+          (blur)="handleBlur()"
+        />
+      </div>
+    </div>
+  </label>
+</div>

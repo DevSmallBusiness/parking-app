@@ -1,0 +1,22 @@
+@use "../../_styles/index.scss" as styles;
+
+@include styles.form-input($name: "sub-form-date");
+
+.sub-form-date {
+  &__input {
+    border-right: styles.$box-bor-solid styles.$color-bor;
+
+    &:last-child {
+      border: none;
+    }
+  }
+
+  &__inputs {
+    display: flex;
+    gap: 5px;
+  }
+
+  &__input {
+    width: 100px;
+  }
+}

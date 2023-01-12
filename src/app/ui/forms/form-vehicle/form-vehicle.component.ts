@@ -49,9 +49,9 @@ export class FormVehicleComponent {
       entryDate: new UntypedFormControl(null, Validators.required),
       departureDate: new UntypedFormControl(null, Validators.required),
       receivableValue: new UntypedFormControl(null, Validators.required),
-      moneyPaid: new UntypedFormControl(null, Validators.required),
-      remainigMoney: new UntypedFormControl(null, Validators.required),
-      serviceState: new UntypedFormControl(null, Validators.required),
+      moneyPaid: new UntypedFormControl(null),
+      remainigMoney: new UntypedFormControl(null),
+      serviceState: new UntypedFormControl(null),
       //---
       id: new UntypedFormControl(null),
     },

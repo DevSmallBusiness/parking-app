@@ -77,13 +77,15 @@
       [display]="'block'"
       [icon]="'edit'"
       [type]="'static'"
-      (clicked)="handleLoadVehicleToUpdate(vehicle.id); modalUpdateRef.toggle()"
+      (clicked)="
+        handleLoadVehicleRecordToUpdate(vehicle.id); modalUpdateRef.toggle()
+      "
     ></parking-button>
     <parking-button
       [display]="'block'"
       [icon]="'trash-alt'"
       [type]="'static'"
-      (clicked)="modalDeleteRef.toggle(); setVehicleId(vehicle.id)"
+      (clicked)="modalDeleteRef.toggle(); setVehicleRecordId(vehicle.id)"
     ></parking-button>
   </td>
 </ng-template>
@@ -92,7 +94,9 @@
   <ng-container>
     <parking-form-vehicle
       [canResetForm]="canCloseModal"
-      (dataOutput)="handleCreateVehicle($event)"
+      [typesServices]="typesServices"
+      [typesVehicles]="typesVehicles"
+      (dataOutput)="handleCreateVehicleRecord($event)"
     ></parking-form-vehicle>
   </ng-container>
 </parking-modal>
@@ -102,7 +106,7 @@
     <parking-form-vehicle
       [dataInput]="vehicleToUpdate"
       [canResetForm]="canCloseModal"
-      (dataOutput)="handleUpdateVehicle($event)"
+      (dataOutput)="handleUpdateVehicleRecord($event)"
     ></parking-form-vehicle>
   </ng-container>
 </parking-modal>
@@ -113,12 +117,13 @@
       [text]="'¿Estás seguro de que deseas eliminar este registro?'"
       [weight]="'bold'"
       [size]="'medium'"
+      [color]="'white'"
     ></parking-text>
     <parking-button
       class="vehicles-records__button"
       [label]="'Eliminar'"
       [type]="'static'"
-      (clicked)="modalDeleteRef.toggle(); handleDeleteVehicle()"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteVehicleRecord()"
     ></parking-button>
   </ng-container>
 </parking-modal>

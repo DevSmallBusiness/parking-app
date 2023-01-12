@@ -1,5 +1,5 @@
-<form class="form-vehicle-registration" [formGroup]="form.formGroup">
-  <fieldset class="form-vehicle-registration__section">
+<form class="form-vehicle-record" [formGroup]="form.formGroup">
+  <fieldset class="form-vehicle-record__section">
     <parking-sub-form-select
       [label]="'Tipo de Servicio'"
       [options]="typesServices"
@@ -15,7 +15,7 @@
     ></parking-sub-form-select>
   </fieldset>
 
-  <fieldset class="form-vehicle-registration__section">
+  <fieldset class="form-vehicle-record__section">
     <parking-sub-form-input
       [type]="'input'"
       [label]="'Placa'"
@@ -28,6 +28,50 @@
       [label]="'Nombre del Propietario'"
       [icon]="'user'"
       [formControlName]="form.formControlNames.ownerName"
+    ></parking-sub-form-input>
+  </fieldset>
+
+  <fieldset class="form-vehicle-record__section">
+    <parking-sub-form-input
+      [type]="'input'"
+      [label]="'Número del Propietario'"
+      [icon]="'phone-call'"
+      [formControlName]="form.formControlNames.ownerNumber"
+    ></parking-sub-form-input>
+
+    <parking-sub-form-date>
+      [label]="'Fecha de Ingreso'" [icon]="'phone-call'"
+      [formControlName]="form.formControlNames.entryDate"
+    </parking-sub-form-date>
+  </fieldset>
+
+  <fieldset class="form-vehicle-record__section">
+    <parking-sub-form-date>
+      [label]="'Fecha de Salida'" [icon]="'phone-call'"
+      [formControlName]="form.formControlNames.departureDate"
+    </parking-sub-form-date>
+
+    <parking-sub-form-input
+      [type]="'input'"
+      [label]="'Valor a cobrar'"
+      [icon]="'wallet-alt'"
+      [formControlName]="form.formControlNames.receivableValue"
+    ></parking-sub-form-input>
+  </fieldset>
+
+  <fieldset class="form-vehicle-record__section">
+    <parking-sub-form-input
+      [type]="'input'"
+      [label]="'Abono (opcional)'"
+      [icon]="'wallet-alt'"
+      [formControlName]="form.formControlNames.moneyPaid"
+    ></parking-sub-form-input>
+
+    <parking-sub-form-input
+      [type]="'input'"
+      [label]="'Restante'"
+      [icon]="'wallet-alt'"
+      [formControlName]="form.formControlNames.remainigMoney"
     ></parking-sub-form-input>
   </fieldset>
 

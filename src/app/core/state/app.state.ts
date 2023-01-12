@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ChangesHistoryState } from './changes-history.state';
+import { NotificationsState } from './notifications.state';
 import { ResourcesState } from './resources.state';
 import { VehiclesRecordsState } from './vehicles-records.state';
 
@@ -10,7 +11,8 @@ export class AppState {
   constructor(
     private resourcesState: ResourcesState,
     private vehiclesRecordsState: VehiclesRecordsState,
-    private changesHistoryState: ChangesHistoryState
+    private changesHistoryState: ChangesHistoryState,
+    private notificationsState: NotificationsState
   ) {}
 
   get resources() {
@@ -23,5 +25,9 @@ export class AppState {
 
   get changesHistory() {
     return this.changesHistoryState.store();
+  }
+
+  get notifications() {
+    return this.notificationsState.store();
   }
 }

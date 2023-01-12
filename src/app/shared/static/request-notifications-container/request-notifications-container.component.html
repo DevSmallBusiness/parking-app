@@ -1,1 +1,11 @@
-<p>request-notifications-container works!</p>
+<ng-container
+  *ngIf="{
+    notification: (notification$ | async)
+  } as data"
+>
+  <parking-request-notifications
+    *ngIf="data.notification"
+    [message]="data.notification"
+    (closeClicked)="handleClose()"
+  ></parking-request-notifications>
+</ng-container>

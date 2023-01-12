@@ -1,0 +1,15 @@
+<div class="request-notification__container">
+  <div class="request-notification__dialog">
+    <parking-loader class="request-notification__loader"></parking-loader>
+    <div class="request-notification__text">
+      {{ message }}
+    </div>
+    <parking-button
+      *ngIf="showClose"
+      class="request-notification__close"
+      [type]="'button'"
+      [label]="'Cerrar'"
+      (clicked)="handleClose()"
+    ></parking-button>
+  </div>
+</div>

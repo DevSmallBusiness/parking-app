@@ -16,3 +16,9 @@ export interface VehicleRecordModel {
   remainigMoney?: string;
   serviceState?: ServiceStatesEnum;
 }
+
+export interface VehicleRecordDateModel {
+  day: string;
+  month: string;
+  year: string;
+}

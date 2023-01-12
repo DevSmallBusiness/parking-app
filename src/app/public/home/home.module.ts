@@ -5,6 +5,7 @@ import { HeaderContainerModule } from 'src/app/shared/shell/header-container/hea
 import { LayoutHomeModule } from 'src/app/ui/layouts/layout-home/layout-home.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { VehiclesRecordsListContainerModule } from 'src/app/shared/vehicles-records/vehicles-records-list-container/vehicles-records-list-container.module';
+import { RequestNotificationsContainerModule } from 'src/app/shared/static/request-notifications-container/request-notifications-container.module';
 
 @NgModule({
   declarations: [],
@@ -14,6 +15,7 @@ import { VehiclesRecordsListContainerModule } from 'src/app/shared/vehicles-reco
     LayoutHomeModule,
     HeaderContainerModule,
     VehiclesRecordsListContainerModule,
+    RequestNotificationsContainerModule,
   ],
 })
 export class HomeModule {}

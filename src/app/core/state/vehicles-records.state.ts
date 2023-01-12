@@ -10,12 +10,17 @@ import { VehicleRecordModel } from '../models/vehicle-record';
 export class VehiclesRecordsState {
   private vehiclesRecords$: BehaviorSubject<VehicleRecordModel[]> =
     new BehaviorSubject([]);
+  private currentVehicleRecordToUpdate$: BehaviorSubject<VehicleRecordModel> =
+    new BehaviorSubject(null);
 
   constructor(private factory: StateFactory) {}
 
   store() {
     return {
       vehiclesRecords: this.factory.state(this.vehiclesRecords$),
+      currentVehicleRecordToUpdate: this.factory.state(
+        this.currentVehicleRecordToUpdate$
+      ),
     };
   }
 }

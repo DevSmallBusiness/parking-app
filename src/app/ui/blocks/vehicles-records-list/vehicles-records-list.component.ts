@@ -9,6 +9,7 @@ import {
   ChangeDetectorRef,
   OnChanges,
 } from '@angular/core';
+import { OptionModel } from 'src/app/core/models/option';
 import { VehicleRecordModel } from 'src/app/core/models/vehicle-record';
 import { ModalComponent } from 'src/app/ui/elements/modal/modal.component';
 
@@ -27,14 +28,17 @@ export class VehiclesRecordsListComponent implements OnChanges {
   @Input() vehicleToUpdate: VehicleRecordModel;
   @Input() isSidebarClose: boolean;
   @Input() isLoading: boolean;
+  @Input() typesServices: OptionModel[];
+  @Input() typesVehicles: OptionModel[];
   @Input() canCloseModal: boolean;
-  @Output() createVehicle: EventEmitter<VehicleRecordModel> =
+  @Output() createVehicleRecord: EventEmitter<VehicleRecordModel> =
     new EventEmitter();
-  @Output() updateVehicle: EventEmitter<VehicleRecordModel> =
+  @Output() updateVehicleRecord: EventEmitter<VehicleRecordModel> =
     new EventEmitter();
-  @Output() deleteVehicle: EventEmitter<string> = new EventEmitter();
-  @Output() loadVehicleToUpdate: EventEmitter<string> = new EventEmitter();
-  private vehicleId: string;
+  @Output() deleteVehicleRecord: EventEmitter<string> = new EventEmitter();
+  @Output() loadVehicleRecordToUpdate: EventEmitter<string> =
+    new EventEmitter();
+  private vehicleRecordId: string;
 
   constructor(private cdRef: ChangeDetectorRef) {}
 
@@ -49,23 +53,23 @@ export class VehiclesRecordsListComponent implements OnChanges {
     this.cdRef.detectChanges();
   }
 
-  handleCreateVehicle(vehicle: VehicleRecordModel): void {
-    this.createVehicle.emit(vehicle);
+  handleCreateVehicleRecord(vehicleRecord: VehicleRecordModel): void {
+    this.createVehicleRecord.emit(vehicleRecord);
   }
 
-  handleUpdateVehicle(vehicle: VehicleRecordModel): void {
-    this.updateVehicle.emit(vehicle);
+  handleUpdateVehicleRecord(vehicleRecord: VehicleRecordModel): void {
+    this.updateVehicleRecord.emit(vehicleRecord);
   }
 
-  handleDeleteVehicle(): void {
-    this.deleteVehicle.emit(this.vehicleId);
+  handleDeleteVehicleRecord(): void {
+    this.deleteVehicleRecord.emit(this.vehicleRecordId);
   }
 
-  setVehicleId(vehicleId: string): void {
-    this.vehicleId = vehicleId;
+  setVehicleRecordId(vehicleRecordId: string): void {
+    this.vehicleRecordId = vehicleRecordId;
   }
 
-  handleLoadVehicleToUpdate(vehicleId: string): void {
-    this.loadVehicleToUpdate.emit(vehicleId);
+  handleLoadVehicleRecordToUpdate(vehicleRecordId: string): void {
+    this.loadVehicleRecordToUpdate.emit(vehicleRecordId);
   }
 }
