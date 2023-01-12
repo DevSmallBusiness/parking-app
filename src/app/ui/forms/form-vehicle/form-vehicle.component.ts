@@ -8,7 +8,8 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { VehicleModel } from 'src/app/core/models/vehicle';
+import { VehicleRecordModel } from 'src/app/core/models/vehicle-record';
+import { OptionModel } from 'src/app/core/models/option';
 
 @Component({
   selector: 'parking-form-vehicle',
@@ -18,10 +19,12 @@ import { VehicleModel } from 'src/app/core/models/vehicle';
 })
 export class FormVehicleComponent {
   @Input() canResetForm: boolean;
+  @Input() typesServices: OptionModel[];
+  @Input() typesVehicles: OptionModel[];
 
   public manualSave$: Subject<void> = new Subject();
-  private input$: Subject<VehicleModel> = new Subject();
-  @Input() set dataInput(value: VehicleModel) {
+  private input$: Subject<VehicleRecordModel> = new Subject();
+  @Input() set dataInput(value: VehicleRecordModel) {
     this.input$.next(value);
   }
 
@@ -30,8 +33,8 @@ export class FormVehicleComponent {
     this.disabled$.next(!!value);
   }
 
-  @Output() dataOutput: Subject<VehicleModel> = new Subject();
-  form = createForm<VehicleModel>(this, {
+  @Output() dataOutput: Subject<VehicleRecordModel> = new Subject();
+  form = createForm<VehicleRecordModel>(this, {
     formType: FormType.ROOT,
     input$: this.input$,
     disabled$: this.disabled$,

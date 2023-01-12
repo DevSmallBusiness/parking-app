@@ -1,0 +1,21 @@
+<ng-container
+  *ngIf="{
+    vehiclesRecords: (vehiclesRecords$ | async),
+    isSidebarClose: (isSidebarClose$ | async),
+    isLoading: (isLoading$ | async)
+  } as data"
+>
+  <div
+    class="vehicles-records__container"
+    [ngClass]="{
+      'vehicles-records__container--active': !data.isSidebarClose
+    }"
+  >
+    <div class="vehicles-records__content">
+      <parking-vehicles-records-list
+        [vehiclesRecords]="data.vehiclesRecords"
+        [isLoading]="data.isLoading"
+      ></parking-vehicles-records-list>
+    </div>
+  </div>
+</ng-container>

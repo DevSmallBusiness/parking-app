@@ -2,4 +2,8 @@
 
 .icon {
   font-size: styles.func-toRem(1.4);
+
+  &--blue {
+    color: styles.$color-bg-blue-ligth;
+  }
 }

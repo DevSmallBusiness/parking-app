@@ -6,8 +6,8 @@ import { DropdownModule } from 'src/app/ui/elements/dropdown/dropdown.module';
 import { TextModule } from 'src/app/ui/elements/text/text.module';
 
 @NgModule({
-  declarations: [SubFormSelectComponent, DropdownModule, TextModule],
-  imports: [CommonModule],
+  declarations: [SubFormSelectComponent],
+  imports: [CommonModule, DropdownModule, TextModule],
   exports: [SubFormSelectComponent],
 })
 export class SubFormSelectModule {}

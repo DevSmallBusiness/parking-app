@@ -7,7 +7,11 @@
     (click)="toggleVisible()"
     (keydown.space)="handleKeydown($event?.target)"
   >
-    <i *ngIf="!!icon" class="dropdown__icon {{ icon }}"></i>
+    <parking-icon
+      *ngIf="!!icon"
+      class="dropdown__icon {{ icon }}"
+      [icon]="icon"
+    ></parking-icon>
 
     <div class="dropdown__text">
       <parking-text

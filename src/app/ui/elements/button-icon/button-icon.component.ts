@@ -14,6 +14,7 @@ import {
 })
 export class ButtonIconComponent {
   @Input() icon: string;
+  @Input() iconColor: string;
   @Input() isDisabled = false;
   @Output() clicked: EventEmitter<void> = new EventEmitter();
 

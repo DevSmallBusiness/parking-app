@@ -1,4 +1,36 @@
 <form class="form-vehicle-registration" [formGroup]="form.formGroup">
+  <fieldset class="form-vehicle-registration__section">
+    <parking-sub-form-select
+      [label]="'Tipo de Servicio'"
+      [options]="typesServices"
+      [icon]="'objects-horizontal-left'"
+      [formControlName]="form.formControlNames.typeService"
+    ></parking-sub-form-select>
+
+    <parking-sub-form-select
+      [label]="'Tipo de Vehículo'"
+      [options]="typesVehicles"
+      [icon]="'car'"
+      [formControlName]="form.formControlNames.typeVehicle"
+    ></parking-sub-form-select>
+  </fieldset>
+
+  <fieldset class="form-vehicle-registration__section">
+    <parking-sub-form-input
+      [type]="'input'"
+      [label]="'Placa'"
+      [icon]="'data'"
+      [formControlName]="form.formControlNames.plate"
+    ></parking-sub-form-input>
+
+    <parking-sub-form-input
+      [type]="'input'"
+      [label]="'Nombre del Propietario'"
+      [icon]="'user'"
+      [formControlName]="form.formControlNames.ownerName"
+    ></parking-sub-form-input>
+  </fieldset>
+
   <parking-button
     [label]="'Guardar'"
     [type]="'static'"

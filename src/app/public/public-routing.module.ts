@@ -4,8 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: 'history',
     loadChildren: () =>
-      import('./main-page/main-page.module').then((m) => m.MainPageModule),
+      import('./changes-history/changes-history.module').then(
+        (m) => m.ChangeHistoryModule
+      ),
   },
   {
     path: '**',

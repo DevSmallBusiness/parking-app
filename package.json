@@ -19,9 +19,9 @@
     "@angular/platform-browser": "^15.0.0",
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
+    "lodash-es": "^4.17.21",
     "ngx-sub-form": "^8.0.0",
     "rxjs": "^7.4.0",
-    "tsdef": "^0.0.14",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

@@ -22,8 +22,7 @@
       position: relative;
 
       &#{$self}__label--focus {
-        background-color: color.$primary-color-light;
-        border-color: color.$primary-color;
+        background-color: color.$bg-white;
       }
 
       &#{$self}__label--error {

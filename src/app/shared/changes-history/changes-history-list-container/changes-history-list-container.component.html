@@ -1,0 +1,21 @@
+<ng-container
+  *ngIf="{
+    changesHistory: (changesHistory$ | async),
+    isSidebarClose: (isSidebarClose$ | async),
+    isLoading: (isLoading$ | async)
+  } as data"
+>
+  <div
+    class="changes-history__container"
+    [ngClass]="{
+      'changes-history__container--active': !data.isSidebarClose
+    }"
+  >
+    <div class="changes-history__content">
+      <parking-changes-history-list
+        [changesHistory]="data.changesHistory"
+        [isLoading]="data.isLoading"
+      ></parking-changes-history-list>
+    </div>
+  </div>
+</ng-container>

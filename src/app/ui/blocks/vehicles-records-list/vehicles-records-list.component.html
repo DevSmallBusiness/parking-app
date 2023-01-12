@@ -1,0 +1,124 @@
+<div class="vehicles-records__wrapper">
+  <div class="vehicles-records__header">
+    <parking-text
+      [text]="'Registros'"
+      [weight]="'bold'"
+      [size]="'medium'"
+      [color]="'white'"
+    ></parking-text>
+    <parking-button
+      [type]="'static'"
+      [display]="'inline'"
+      [icon]="'plus-circle'"
+      [label]="'Registrar nuevo vehículo'"
+      (clicked)="modalRef.toggle()"
+    ></parking-button>
+  </div>
+
+  <parking-table
+    [headers]="[
+      ['Placa', '4rem'],
+      ['Fecha de Ingreso', '4rem'],
+      ['Fecha de Vencimiento', '4rem'],
+      ['Tipo de Servicio', '4rem'],
+      ['Estado del Servicio', '4rem'],
+      ['Acciones', '2rem']
+    ]"
+    [items]="vehiclesRecords || []"
+    [itemTemplateRef]="vehiclesRegistrationTemplate"
+    [isLoading]="isLoading"
+  ></parking-table>
+</div>
+
+<ng-template #vehiclesRegistrationTemplate let-vehicle="item" let-index="index">
+  <td class="vehicles-records__td">
+    <parking-text
+      [text]="vehicle?.plate"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></parking-text>
+  </td>
+  <td class="vehicles-records__td">
+    <parking-text
+      [text]="vehicle?.entryDate | date : 'dd-MM-yyyy'"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></parking-text>
+  </td>
+  <td class="vehicles-records__td">
+    <parking-text
+      [text]="vehicle?.departureDate | date : 'dd-MM-yyyy'"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></parking-text>
+  </td>
+  <td class="vehicles-records__td">
+    <parking-text
+      [text]="vehicle?.typeService"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></parking-text>
+  </td>
+  <td class="vehicles-records__td">
+    <parking-text
+      [text]="vehicle?.serviceState"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></parking-text>
+  </td>
+
+  <td class="vehicles-records__td vehicles-records__td--buttons">
+    <parking-button
+      [display]="'block'"
+      [icon]="'edit'"
+      [type]="'static'"
+      (clicked)="handleLoadVehicleToUpdate(vehicle.id); modalUpdateRef.toggle()"
+    ></parking-button>
+    <parking-button
+      [display]="'block'"
+      [icon]="'trash-alt'"
+      [type]="'static'"
+      (clicked)="modalDeleteRef.toggle(); setVehicleId(vehicle.id)"
+    ></parking-button>
+  </td>
+</ng-template>
+
+<parking-modal #modalRef>
+  <ng-container>
+    <parking-form-vehicle
+      [canResetForm]="canCloseModal"
+      (dataOutput)="handleCreateVehicle($event)"
+    ></parking-form-vehicle>
+  </ng-container>
+</parking-modal>
+
+<parking-modal #modalUpdateRef>
+  <ng-container>
+    <parking-form-vehicle
+      [dataInput]="vehicleToUpdate"
+      [canResetForm]="canCloseModal"
+      (dataOutput)="handleUpdateVehicle($event)"
+    ></parking-form-vehicle>
+  </ng-container>
+</parking-modal>
+
+<parking-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <parking-text
+      [text]="'¿Estás seguro de que deseas eliminar este registro?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></parking-text>
+    <parking-button
+      class="vehicles-records__button"
+      [label]="'Eliminar'"
+      [type]="'static'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteVehicle()"
+    ></parking-button>
+  </ng-container>
+</parking-modal>

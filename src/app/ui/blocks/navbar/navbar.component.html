@@ -11,7 +11,7 @@
       </a>
     </li>
 
-    <li class="navbar__item">
+    <li class="navbar__item" id="navbar__item--home" (click)="changePage('')">
       <a class="navbar__link">
         <span class="navbar__icon"
           ><parking-icon [icon]="'home-alt-2'"></parking-icon
@@ -27,7 +27,11 @@
       </a>
     </li>
 
-    <li class="navbar__item">
+    <li
+      class="navbar__item"
+      id="navbar__item--history"
+      (click)="changePage('history')"
+    >
       <a class="navbar__link">
         <span class="navbar__icon"
           ><parking-icon [icon]="'hourglass'"></parking-icon

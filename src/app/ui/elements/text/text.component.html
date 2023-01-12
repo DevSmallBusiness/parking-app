@@ -15,10 +15,4 @@
     class="text text--{{type}} text--{{size}} text--{{weight}} text--{{color}} text--{{style}}"
     [style.-webkit-line-clamp]="clamp ? clamp : 'none'"
   >{{text}}</p>
-
-  <p
-    *ngSwitchCase="'date'"
-    class="text text--text text--{{size}} text--{{weight}} text--{{color}} text--{{style}}"
-    [style.-webkit-line-clamp]="clamp ? clamp : 'none'"
-  >{{text | date : "dd-MM-yyyy" }}</p>
 </ng-container>
