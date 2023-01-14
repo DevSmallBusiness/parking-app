@@ -1,11 +1,7 @@
-import { ServiceStatesEnum } from 'src/app/core/enums/service-states.enum';
-import { TypeServiceEnum } from 'src/app/core/enums/type-service.enum';
-import { TypeVehicleEnum } from 'src/app/core/enums/type-vehicle.enum';
-
 export interface VehicleRecordModel {
   id?: string;
-  typeService?: TypeServiceEnum;
-  typeVehicle?: TypeVehicleEnum;
+  typeService?: string;
+  typeVehicle?: string;
   plate?: string;
   ownerName?: string;
   ownerNumber?: string;
@@ -14,7 +10,7 @@ export interface VehicleRecordModel {
   receivableValue?: string;
   moneyPaid?: string;
   remainigMoney?: string;
-  serviceState?: ServiceStatesEnum;
+  serviceState?: string;
 }
 
 export interface VehicleRecordDateModel {

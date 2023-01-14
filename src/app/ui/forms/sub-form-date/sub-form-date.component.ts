@@ -1,11 +1,14 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   Input,
   Renderer2,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
+  ReactiveFormsModule,
   UntypedFormControl,
   ValidationErrors,
   Validators,
@@ -17,12 +20,17 @@ import {
   TypedFormGroup,
 } from 'ngx-sub-form';
 import { VehicleRecordDateModel } from 'src/app/core/models/vehicle-record';
+import { IconModule } from 'src/app/ui/elements/icon/icon.module';
+import { TextModule } from 'src/app/ui/elements/text/text.module';
 
 @Component({
   selector: 'parking-sub-form-date',
+  standalone: true,
+  imports: [CommonModule, TextModule, IconModule, ReactiveFormsModule],
   templateUrl: './sub-form-date.component.html',
   styleUrls: ['./sub-form-date.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   providers: subformComponentProviders(SubFormDateComponent),
 })
 export class SubFormDateComponent {

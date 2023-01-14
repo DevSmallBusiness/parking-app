@@ -39,17 +39,19 @@
       [formControlName]="form.formControlNames.ownerNumber"
     ></parking-sub-form-input>
 
-    <parking-sub-form-date>
-      [label]="'Fecha de Ingreso'" [icon]="'phone-call'"
+    <parking-sub-form-date
+      [label]="'Fecha de Ingreso'"
+      [icon]="'calendar'"
       [formControlName]="form.formControlNames.entryDate"
-    </parking-sub-form-date>
+    ></parking-sub-form-date>
   </fieldset>
 
   <fieldset class="form-vehicle-record__section">
-    <parking-sub-form-date>
-      [label]="'Fecha de Salida'" [icon]="'phone-call'"
+    <parking-sub-form-date
+      [label]="'Fecha de Salida'"
+      [icon]="'calendar'"
       [formControlName]="form.formControlNames.departureDate"
-    </parking-sub-form-date>
+    ></parking-sub-form-date>
 
     <parking-sub-form-input
       [type]="'input'"

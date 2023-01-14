@@ -32,6 +32,10 @@ export class VehiclesRecordsListContainerFacade {
     return this.state.vehiclesRecords.vehiclesRecords.$();
   }
 
+  currentVehicleRecordToUpdate$(): Observable<VehicleRecordModel> {
+    return this.state.vehiclesRecords.currentVehicleRecordToUpdate.$();
+  }
+
   isSidebarClose$(): Observable<boolean> {
     return this.state.resources.isSidebarClose.$();
   }

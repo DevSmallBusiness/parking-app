@@ -19,10 +19,12 @@ export class VehiclesRecordsListContainerComponent
   implements OnInit, OnDestroy
 {
   vehiclesRecords$: Observable<VehicleRecordModel[]>;
+  vehicleToUpdate$: Observable<VehicleRecordModel>;
   isSidebarClose$: Observable<boolean>;
   isLoading$: Observable<boolean>;
   typesServices$: Observable<OptionModel[]>;
   typesVehicles$: Observable<OptionModel[]>;
+  canCloseModal$: Observable<boolean>;
 
   constructor(private facade: VehiclesRecordsListContainerFacade) {}
 
@@ -59,9 +61,11 @@ export class VehiclesRecordsListContainerComponent
 
   private initializeSubscriptions(): void {
     this.vehiclesRecords$ = this.facade.vehiclesRecords$();
+    this.vehicleToUpdate$ = this.facade.currentVehicleRecordToUpdate$();
     this.isSidebarClose$ = this.facade.isSidebarClose$();
     this.isLoading$ = this.facade.isLoading$();
     this.typesServices$ = this.facade.typesServices$();
     this.typesVehicles$ = this.facade.typesVehicles$();
+    this.canCloseModal$ = this.facade.canCloseModal$();
   }
 }

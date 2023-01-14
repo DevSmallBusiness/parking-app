@@ -45,7 +45,7 @@ export class FormVehicleComponent {
       typeVehicle: new UntypedFormControl(null, Validators.required),
       plate: new UntypedFormControl(null, Validators.required),
       ownerName: new UntypedFormControl(null, Validators.required),
-      ownerNumber: new UntypedFormControl(null),
+      ownerNumber: new UntypedFormControl(null, Validators.required),
       entryDate: new UntypedFormControl(null, Validators.required),
       departureDate: new UntypedFormControl(null, Validators.required),
       receivableValue: new UntypedFormControl(null, Validators.required),

@@ -106,6 +106,8 @@
     <parking-form-vehicle
       [dataInput]="vehicleToUpdate"
       [canResetForm]="canCloseModal"
+      [typesServices]="typesServices"
+      [typesVehicles]="typesVehicles"
       (dataOutput)="handleUpdateVehicleRecord($event)"
     ></parking-form-vehicle>
   </ng-container>

@@ -8,7 +8,7 @@ import { SubFormSelectModule } from 'src/app/ui/forms/sub-form-select/sub-form-s
 import { TextModule } from 'src/app/ui/elements/text/text.module';
 import { FormVehicleComponent } from './form-vehicle.component';
 import { SubFormInputModule } from 'src/app/ui/forms/sub-form-input/sub-form-input.module';
-import { SubFormDateModule } from 'src/app/ui/forms/sub-form-date/sub-form-date.module';
+import { SubFormDateComponent } from 'src/app/ui/forms/sub-form-date/sub-form-date.component';
 
 @NgModule({
   declarations: [FormVehicleComponent],
@@ -17,7 +17,7 @@ import { SubFormDateModule } from 'src/app/ui/forms/sub-form-date/sub-form-date.
     ReactiveFormsModule,
     SubFormInputModule,
     SubFormSelectModule,
-    SubFormDateModule,
+    SubFormDateComponent,
     ButtonModule,
     ButtonIconModule,
     TextModule,

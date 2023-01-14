@@ -22,7 +22,7 @@ export class VehiclesRecordsService {
     return this.httpService
       .get(url)
       .pipe(
-        map(({ result }) =>
+        map((result: any[]) =>
           this.apiToVehiclesRecordsMapper.mapVehiclesRecords(result)
         )
       );

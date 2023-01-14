@@ -1,5 +1,11 @@
 <div class="sub-form-date" [formGroup]="form.formGroup">
   <label class="sub-form-date__label">
+    <parking-icon
+      *ngIf="!!icon"
+      class="sub-form-date__icon {{ icon }}"
+      [icon]="icon"
+    ></parking-icon>
+
     <div class="sub-form-date__text">
       <parking-text
         [type]="'text'"
