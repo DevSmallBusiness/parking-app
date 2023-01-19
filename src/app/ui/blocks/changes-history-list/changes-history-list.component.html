@@ -1,1 +1,112 @@
-<p>changes-history-list works!</p>
+<div class="changes-history__wrapper">
+  <div class="changes-history__header">
+    <parking-text
+      [text]="'Historial de Cambios'"
+      [weight]="'bold'"
+      [size]="'medium'"
+      [color]="'white'"
+    ></parking-text>
+    <parking-button
+      [type]="'static'"
+      [display]="'inline'"
+      [icon]="'plus-circle'"
+      [label]="'ELiminar todo'"
+      (clicked)="handleDeleteAllHistory()"
+    ></parking-button>
+  </div>
+
+  <parking-table
+    [headers]="[
+      ['Placa', '4rem'],
+      ['Fecha de Ingreso', '4rem'],
+      ['Fecha de Vencimiento', '4rem'],
+      ['Tipo de Servicio', '4rem'],
+      ['Estado del Servicio', '4rem'],
+      ['Acciones', '2rem']
+    ]"
+    [items]="changesHistory || []"
+    [itemTemplateRef]="changesHistoryTemplate"
+    [isLoading]="isLoading"
+  ></parking-table>
+</div>
+
+<ng-template #changesHistoryTemplate let-change="item" let-index="index">
+  <td class="changes-history__td">
+    <parking-text
+      [text]="change?.plate"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></parking-text>
+  </td>
+  <td class="changes-history__td">
+    <parking-text
+      [text]="change?.entryDate | date : 'dd-MM-yyyy'"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></parking-text>
+  </td>
+  <td class="changes-history__td">
+    <parking-text
+      [text]="change?.departureDate | date : 'dd-MM-yyyy'"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></parking-text>
+  </td>
+  <td class="changes-history__td">
+    <parking-text
+      [text]="change?.typeService"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></parking-text>
+  </td>
+  <td class="changes-history__td">
+    <parking-text
+      [text]="change?.serviceState"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></parking-text>
+  </td>
+
+  <td class="changes-history__td changes-history__td--buttons">
+    <parking-button
+      [display]="'block'"
+      [icon]="'edit'"
+      [type]="'static'"
+      (clicked)="
+        handleLoadChangeHistoryToView(change.id); modalViewRef.toggle()
+      "
+    ></parking-button>
+    <parking-button
+      [display]="'block'"
+      [icon]="'trash-alt'"
+      [type]="'static'"
+      (clicked)="modalDeleteRef.toggle(); setChangeHistoryId(change.id)"
+    ></parking-button>
+  </td>
+</ng-template>
+
+<parking-modal #modalViewRef>
+  <ng-container> </ng-container>
+</parking-modal>
+
+<parking-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <parking-text
+      [text]="'¿Estás seguro de que deseas eliminar este registro?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+      [color]="'white'"
+    ></parking-text>
+    <parking-button
+      class="changes-history__button"
+      [label]="'Eliminar'"
+      [type]="'static'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteChangeHistory()"
+    ></parking-button>
+  </ng-container>
+</parking-modal>

@@ -1,8 +1,10 @@
 <ng-container
   *ngIf="{
     changesHistory: (changesHistory$ | async),
+    changeToView$: (changeToView$ | async),
     isSidebarClose: (isSidebarClose$ | async),
-    isLoading: (isLoading$ | async)
+    isLoading: (isLoading$ | async),
+    canCloseModal: (canCloseModal$ | async)
   } as data"
 >
   <div
@@ -14,7 +16,10 @@
     <div class="changes-history__content">
       <parking-changes-history-list
         [changesHistory]="data.changesHistory"
+        [changeToView]="data.changesHistory"
         [isLoading]="data.isLoading"
+        [isSidebarClose]="data.isSidebarClose"
+        [canCloseModal]="data.canCloseModal"
       ></parking-changes-history-list>
     </div>
   </div>

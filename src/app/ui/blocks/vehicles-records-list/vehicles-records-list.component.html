@@ -25,12 +25,12 @@
       ['Acciones', '2rem']
     ]"
     [items]="vehiclesRecords || []"
-    [itemTemplateRef]="vehiclesRegistrationTemplate"
+    [itemTemplateRef]="vehiclesRecordsTemplate"
     [isLoading]="isLoading"
   ></parking-table>
 </div>
 
-<ng-template #vehiclesRegistrationTemplate let-vehicle="item" let-index="index">
+<ng-template #vehiclesRecordsTemplate let-vehicle="item" let-index="index">
   <td class="vehicles-records__td">
     <parking-text
       [text]="vehicle?.plate"

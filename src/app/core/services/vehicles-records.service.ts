@@ -36,9 +36,9 @@ export class VehiclesRecordsService {
 
   updateVehicleRecord(vehicleRecord: VehicleRecordModel): Observable<string> {
     const url = URL_RESOURCE.vehiclesRecords;
-    const formData = this.toApiVehicleRecordMapper.map(vehicleRecord);
+    const request = this.toApiVehicleRecordMapper.map(vehicleRecord);
     return this.httpService
-      .post(url, formData)
+      .post(url, request)
       .pipe(map(({ result }) => result?._id));
   }
 

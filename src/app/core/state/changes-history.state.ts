@@ -10,12 +10,17 @@ import { ChangeHistoryModel } from '../models/change-history';
 export class ChangesHistoryState {
   private changesHistory$: BehaviorSubject<ChangeHistoryModel[]> =
     new BehaviorSubject([]);
+  private currentChangeHistoryToView$: BehaviorSubject<ChangeHistoryModel> =
+    new BehaviorSubject(null);
 
   constructor(private factory: StateFactory) {}
 
   store() {
     return {
       changesHistory: this.factory.state(this.changesHistory$),
+      currentChangeHistoryToView: this.factory.state(
+        this.currentChangeHistoryToView$
+      ),
     };
   }
 }

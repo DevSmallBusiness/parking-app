@@ -16,8 +16,10 @@ import { ChangesHistoryListContainerFacade } from './changes-history-list-contai
 })
 export class ChangesHistoryListContainerComponent implements OnInit, OnDestroy {
   changesHistory$: Observable<ChangeHistoryModel[]>;
+  changeToView$: Observable<ChangeHistoryModel>;
   isSidebarClose$: Observable<boolean>;
   isLoading$: Observable<boolean>;
+  canCloseModal$: Observable<boolean>;
 
   constructor(private facade: ChangesHistoryListContainerFacade) {}
 
@@ -36,6 +38,9 @@ export class ChangesHistoryListContainerComponent implements OnInit, OnDestroy {
   private initializeSubscriptions(): void {
     this.changesHistory$ = this.facade.changesHistory$();
     this.isSidebarClose$ = this.facade.isSidebarClose$();
+    this.changeToView$ = this.facade.currentChangeHistoryToView$();
+    this.isSidebarClose$ = this.facade.isSidebarClose$();
     this.isLoading$ = this.facade.isLoading$();
+    this.canCloseModal$ = this.facade.canCloseModal$();
   }
 }

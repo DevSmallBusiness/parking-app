@@ -15,4 +15,5 @@ export interface ChangeHistoryModel {
   moneyPaid?: string;
   remainigMoney?: string;
   serviceState?: ServiceStatesEnum;
+  creationDate?: Date;
 }
