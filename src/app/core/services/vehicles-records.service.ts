@@ -22,7 +22,7 @@ export class VehiclesRecordsService {
     return this.httpService
       .get(url)
       .pipe(
-        map((result: any[]) =>
+        map(({ result }) =>
           this.apiToVehiclesRecordsMapper.mapVehiclesRecords(result)
         )
       );
@@ -38,7 +38,7 @@ export class VehiclesRecordsService {
     const url = URL_RESOURCE.vehiclesRecords;
     const request = this.toApiVehicleRecordMapper.map(vehicleRecord);
     return this.httpService
-      .post(url, request)
+      .put(url, request)
       .pipe(map(({ result }) => result?._id));
   }
 

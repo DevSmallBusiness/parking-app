@@ -65,7 +65,7 @@ export class ChangesHistoryListContainerFacade {
     this.destroyChangeHistory();
     const changeHistory = this.state.changesHistory.changesHistory
       .snapshot()
-      .find((ch) => ch.id === id);
+      .find((ch) => ch._id === id);
     this.state.changesHistory.currentChangeHistoryToView.set(changeHistory);
   }
 

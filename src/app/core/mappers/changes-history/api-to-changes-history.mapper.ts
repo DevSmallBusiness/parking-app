@@ -19,7 +19,7 @@ export class ApiToChangesHistoryMapper {
 
   mapChangeHistory(changeHistory: any): ChangeHistoryModel {
     return {
-      id: changeHistory?.id,
+      _id: changeHistory?._id,
       typeService: toTypeServiceEnum(changeHistory?.typeService),
       typeVehicle: toTypeVehicleEnum(changeHistory?.typeVehicle),
       plate: changeHistory?.plate,

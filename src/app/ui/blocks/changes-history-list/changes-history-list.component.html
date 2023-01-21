@@ -78,14 +78,14 @@
       [icon]="'edit'"
       [type]="'static'"
       (clicked)="
-        handleLoadChangeHistoryToView(change.id); modalViewRef.toggle()
+        handleLoadChangeHistoryToView(change._id); modalViewRef.toggle()
       "
     ></parking-button>
     <parking-button
       [display]="'block'"
       [icon]="'trash-alt'"
       [type]="'static'"
-      (clicked)="modalDeleteRef.toggle(); setChangeHistoryId(change.id)"
+      (clicked)="modalDeleteRef.toggle(); setChangeHistoryId(change._id)"
     ></parking-button>
   </td>
 </ng-template>

@@ -3,28 +3,18 @@
   [ngClass]="{ 'navbar__container--active': !isSidebarClose }"
 >
   <ul class="navbar__list">
-    <li class="navbar__item navbar__item--main">
-      <a class="navbar__link" (click)="handleToggleMenu()">
-        <span class="navbar__icon"
-          ><parking-icon [icon]="iconItemMain"></parking-icon
-        ></span>
-      </a>
+    <li class="navbar__item navbar__item--main" (click)="handleToggleMenu()">
+      <parking-icon [icon]="iconItemMain"></parking-icon>
     </li>
 
     <li class="navbar__item" id="navbar__item--home" (click)="changePage('')">
-      <a class="navbar__link">
-        <span class="navbar__icon"
-          ><parking-icon [icon]="'home-alt-2'"></parking-icon
-        ></span>
-        <span class="navbar__text">
-          <parking-text
-            [text]="'Inicio'"
-            [weight]="'bold'"
-            [size]="'medium'"
-            [color]="'white'"
-          ></parking-text>
-        </span>
-      </a>
+      <parking-icon [icon]="'home-alt-2'"></parking-icon>
+      <parking-text
+        [text]="'Inicio'"
+        [weight]="'bold'"
+        [size]="'medium'"
+        [color]="'white'"
+      ></parking-text>
     </li>
 
     <li
@@ -32,19 +22,13 @@
       id="navbar__item--history"
       (click)="changePage('history')"
     >
-      <a class="navbar__link">
-        <span class="navbar__icon"
-          ><parking-icon [icon]="'hourglass'"></parking-icon
-        ></span>
-        <span class="navbar__text">
-          <parking-text
-            [text]="'Historial'"
-            [weight]="'bold'"
-            [size]="'medium'"
-            [color]="'white'"
-          ></parking-text>
-        </span>
-      </a>
+      <parking-icon [icon]="'hourglass'"></parking-icon>
+      <parking-text
+        [text]="'Historial'"
+        [weight]="'bold'"
+        [size]="'medium'"
+        [color]="'white'"
+      ></parking-text>
     </li>
   </ul>
 </nav>

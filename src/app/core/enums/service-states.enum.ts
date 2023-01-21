@@ -1,14 +1,23 @@
 export enum ServiceStatesEnum {
-  defeated = 'defeated',
-  outstanding = 'outstanding',
-  paid = 'paid',
+  defeated = 'VENCIDO',
+  outstanding = 'PENDIENTE',
+  paid = 'PAGADO',
 }
 
 export const toServiceStatesEnum = (key: string): ServiceStatesEnum => {
   const options = new Map();
-  options.set('defeated', ServiceStatesEnum.defeated);
-  options.set('outstanding', ServiceStatesEnum.outstanding);
-  options.set('paid', ServiceStatesEnum.paid);
+  options.set('VENCIDO', ServiceStatesEnum.defeated);
+  options.set('PENDIENTE', ServiceStatesEnum.outstanding);
+  options.set('PAGADO', ServiceStatesEnum.paid);
 
-  return options.get(key?.toString().toLowerCase());
+  return options.get(key);
+};
+
+export const fromServiceStatesEnum = (key: ServiceStatesEnum): string => {
+  const options = new Map();
+  options.set(ServiceStatesEnum.defeated, 'VENCIDO');
+  options.set(ServiceStatesEnum.outstanding, 'PENDIENTE');
+  options.set(ServiceStatesEnum.paid, 'PAGADO');
+
+  return options.get(key);
 };

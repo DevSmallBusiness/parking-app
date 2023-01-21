@@ -1,5 +1,9 @@
-import { VehicleRecordModel } from 'src/app/core/models/vehicle-record';
 import { Injectable } from '@angular/core';
+
+import { fromServiceStatesEnum } from 'src/app/core/enums/service-states.enum';
+import { fromTypeServiceEnum } from 'src/app/core/enums/type-service.enum';
+import { fromTypeVehicleEnum } from 'src/app/core/enums/type-vehicle.enum';
+import { VehicleRecordModel } from 'src/app/core/models/vehicle-record';
 
 @Injectable({
   providedIn: 'root',
@@ -7,9 +11,9 @@ import { Injectable } from '@angular/core';
 export class ToApiVehicleRecordMapper {
   map(vehicleRecord: VehicleRecordModel): any {
     return {
-      id: vehicleRecord?.id,
-      typeService: vehicleRecord?.typeService,
-      typeVehicle: vehicleRecord?.typeVehicle,
+      _id: vehicleRecord?._id,
+      typeService: fromTypeServiceEnum(vehicleRecord?.typeService),
+      typeVehicle: fromTypeVehicleEnum(vehicleRecord?.typeVehicle),
       plate: vehicleRecord?.plate,
       ownerName: vehicleRecord?.ownerName,
       ownerNumber: vehicleRecord?.ownerNumber,
@@ -18,7 +22,7 @@ export class ToApiVehicleRecordMapper {
       receivableValue: vehicleRecord?.receivableValue,
       moneyPaid: vehicleRecord?.moneyPaid,
       remainigMoney: vehicleRecord?.remainigMoney,
-      serviceState: vehicleRecord?.serviceState,
+      serviceState: fromServiceStatesEnum(vehicleRecord?.serviceState),
     };
   }
 }

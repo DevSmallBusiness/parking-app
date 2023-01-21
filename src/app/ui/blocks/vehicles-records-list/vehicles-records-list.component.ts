@@ -9,6 +9,7 @@ import {
   ChangeDetectorRef,
   OnChanges,
 } from '@angular/core';
+import { ServiceStatesEnum } from 'src/app/core/enums/service-states.enum';
 import { OptionModel } from 'src/app/core/models/option';
 import { VehicleRecordModel } from 'src/app/core/models/vehicle-record';
 import { ModalComponent } from 'src/app/ui/elements/modal/modal.component';
@@ -54,10 +55,18 @@ export class VehiclesRecordsListComponent implements OnChanges {
   }
 
   handleCreateVehicleRecord(vehicleRecord: VehicleRecordModel): void {
+    vehicleRecord.serviceState = this.validateServiceStatus(
+      vehicleRecord?.receivableValue,
+      vehicleRecord?.moneyPaid
+    );
     this.createVehicleRecord.emit(vehicleRecord);
   }
 
   handleUpdateVehicleRecord(vehicleRecord: VehicleRecordModel): void {
+    vehicleRecord.serviceState = this.validateServiceStatus(
+      vehicleRecord?.receivableValue,
+      vehicleRecord?.moneyPaid
+    );
     this.updateVehicleRecord.emit(vehicleRecord);
   }
 
@@ -71,5 +80,18 @@ export class VehiclesRecordsListComponent implements OnChanges {
 
   handleLoadVehicleRecordToUpdate(vehicleRecordId: string): void {
     this.loadVehicleRecordToUpdate.emit(vehicleRecordId);
+  }
+
+  validateServiceStatus(
+    receivableValue: number,
+    moneyPaid: number
+  ): ServiceStatesEnum {
+    let serviceState: ServiceStatesEnum;
+    const remainingMoney = receivableValue - moneyPaid;
+    remainingMoney === 0
+      ? (serviceState = ServiceStatesEnum.paid)
+      : (serviceState = ServiceStatesEnum.outstanding);
+
+    return serviceState;
   }
 }

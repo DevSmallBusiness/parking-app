@@ -54,7 +54,7 @@
     ></parking-sub-form-date>
 
     <parking-sub-form-input
-      [type]="'input'"
+      [type]="'number'"
       [label]="'Valor a cobrar'"
       [icon]="'wallet-alt'"
       [formControlName]="form.formControlNames.receivableValue"
@@ -63,14 +63,14 @@
 
   <fieldset class="form-vehicle-record__section">
     <parking-sub-form-input
-      [type]="'input'"
+      [type]="'number'"
       [label]="'Abono (opcional)'"
       [icon]="'wallet-alt'"
       [formControlName]="form.formControlNames.moneyPaid"
     ></parking-sub-form-input>
 
     <parking-sub-form-input
-      [type]="'input'"
+      [type]="'number'"
       [label]="'Restante'"
       [icon]="'wallet-alt'"
       [formControlName]="form.formControlNames.remainigMoney"

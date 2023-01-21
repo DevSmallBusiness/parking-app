@@ -13,16 +13,31 @@
         [weight]="'bold'"
         [text]="label"
       ></parking-text>
-      <input
-        class="sub-form-input__input"
-        [id]="uniqueId"
-        [formControlName]="form.formControlNames.value"
-        [type]="type"
-        [placeholder]="placeholder ?? ''"
-        (keypress)="handleKeypress($event.key)"
-        (focus)="handleFocus($event.target)"
-        (blur)="handleBlur()"
-      />
+      <ng-container [ngSwitch]="type">
+        <input
+          *ngSwitchCase="'input' || 'email' || 'password'"
+          class="sub-form-input__input"
+          [id]="uniqueId"
+          [formControlName]="form.formControlNames.value"
+          [type]="type"
+          [placeholder]="placeholder ?? ''"
+          (keypress)="handleKeypress($event.key)"
+          (focus)="handleFocus($event.target)"
+          (blur)="handleBlur()"
+        />
+
+        <input
+          *ngSwitchCase="'number'"
+          class="sub-form-input__input"
+          [id]="uniqueId"
+          [formControlName]="form.formControlNames.value"
+          [type]="type"
+          [placeholder]="placeholder ?? ''"
+          (keypress)="handleKeypress($event.key)"
+          (focus)="handleFocus($event.target)"
+          (blur)="handleBlur()"
+        />
+      </ng-container>
     </div>
   </label>
 </div>

@@ -78,14 +78,14 @@
       [icon]="'edit'"
       [type]="'static'"
       (clicked)="
-        handleLoadVehicleRecordToUpdate(vehicle.id); modalUpdateRef.toggle()
+        handleLoadVehicleRecordToUpdate(vehicle._id); modalUpdateRef.toggle()
       "
     ></parking-button>
     <parking-button
       [display]="'block'"
       [icon]="'trash-alt'"
       [type]="'static'"
-      (clicked)="modalDeleteRef.toggle(); setVehicleRecordId(vehicle.id)"
+      (clicked)="modalDeleteRef.toggle(); setVehicleRecordId(vehicle._id)"
     ></parking-button>
   </td>
 </ng-template>

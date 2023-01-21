@@ -1,12 +1,20 @@
 export enum TypeVehicleEnum {
-  car = 'car',
-  motorcycle = 'motorcycle',
+  car = 'CARRO',
+  motorcycle = 'MOTO',
 }
 
 export const toTypeVehicleEnum = (key: string): TypeVehicleEnum => {
   const options = new Map();
-  options.set('car', TypeVehicleEnum.car);
-  options.set('motorcycle', TypeVehicleEnum.motorcycle);
+  options.set('CARRO', TypeVehicleEnum.car);
+  options.set('MOTO', TypeVehicleEnum.motorcycle);
 
-  return options.get(key?.toString().toLowerCase());
+  return options.get(key);
+};
+
+export const fromTypeVehicleEnum = (key: TypeVehicleEnum): string => {
+  const options = new Map();
+  options.set(TypeVehicleEnum.car, 'CARRO');
+  options.set(TypeVehicleEnum.motorcycle, 'MOTO');
+
+  return options.get(key);
 };

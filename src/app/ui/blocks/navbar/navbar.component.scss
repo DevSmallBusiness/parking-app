@@ -3,7 +3,7 @@
 .navbar {
   &__container {
     position: fixed;
-    width: styles.func-toRem(18.75);
+    width: styles.func-toRem(15.625);
     height: styles.$box-hht-block;
     transition: 0.5s;
     overflow: hidden;
@@ -28,6 +28,13 @@
     position: relative;
     width: styles.$box-wth-block;
     list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: styles.func-toRem(1.25);
+    color: styles.$color-bg-white;
+    padding: styles.func-toRem(1.25);
     transition: 0.2s ease-in-out;
 
     &--active,
@@ -43,34 +50,6 @@
     &--main:hover {
       background: styles.$color-bg-transparent;
     }
-  }
-
-  &__link {
-    cursor: pointer;
-    position: relative;
-    display: block;
-    width: styles.$box-wth-block;
-    display: flex;
-    text-decoration: none;
-    color: styles.$color-bg-white;
-  }
-
-  &__icon {
-    position: relative;
-    display: block;
-    min-width: styles.func-toRem(3.75);
-    height: styles.func-toRem(3.75);
-    line-height: styles.func-toRem(3.75);
-    text-align: center;
-  }
-
-  &__text {
-    position: relative;
-    display: block;
-    padding: styles.$box-pad-none styles.func-toRem(0.625);
-    height: styles.func-toRem(3.75);
-    line-height: styles.func-toRem(3.75);
-    white-space: nowrap;
   }
 }
 

@@ -22,7 +22,7 @@ export class ChangesHistoryService {
     return this.httpService
       .get(url)
       .pipe(
-        map((result: any[]) =>
+        map(({ result }) =>
           this.apiToChangesHistoryMapper.mapChangesHistory(result)
         )
       );
@@ -38,7 +38,7 @@ export class ChangesHistoryService {
     const url = URL_RESOURCE.changesHistory;
     const request = this.toApiChangesHistoryMapper.map(changeHistory);
     return this.httpService
-      .post(url, request)
+      .put(url, request)
       .pipe(map(({ result }) => result?._id));
   }
 

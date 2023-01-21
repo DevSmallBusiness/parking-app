@@ -19,7 +19,7 @@ export class ApiToVehiclesRecordsMapper {
 
   mapVehicleRecord(vehicleRecord: any): VehicleRecordModel {
     return {
-      id: vehicleRecord?.id,
+      _id: vehicleRecord?._id,
       typeService: toTypeServiceEnum(vehicleRecord?.typeService),
       typeVehicle: toTypeVehicleEnum(vehicleRecord?.typeVehicle),
       plate: vehicleRecord?.plate,

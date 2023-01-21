@@ -66,11 +66,3 @@
     text-align: center;
   }
 }
-
-@media (min-width: styles.$bkp-desktop) {
-  .table {
-    &__table {
-      table-layout: fixed;
-    }
-  }
-}

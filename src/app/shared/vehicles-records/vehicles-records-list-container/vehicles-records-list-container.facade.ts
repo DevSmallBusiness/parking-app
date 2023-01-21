@@ -83,7 +83,7 @@ export class VehiclesRecordsListContainerFacade {
     this.destroyVehicleRecord();
     const vehicleRecord = this.state.vehiclesRecords.vehiclesRecords
       .snapshot()
-      .find((vr) => vr.id === id);
+      .find((vr) => vr._id === id);
     this.state.vehiclesRecords.currentVehicleRecordToUpdate.set(vehicleRecord);
   }
 

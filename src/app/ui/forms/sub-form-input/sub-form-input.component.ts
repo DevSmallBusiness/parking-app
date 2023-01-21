@@ -17,7 +17,7 @@ import { MiscUtil } from 'src/app/core/utils/misc.util';
   providers: subformComponentProviders(SubFormInputComponent),
 })
 export class SubFormInputComponent {
-  @Input() type: 'input' | 'email' | 'password' = 'input';
+  @Input() type: 'input' | 'number' | 'email' | 'password' = 'input';
   @Input() icon: string;
   @Input() label: string;
   @Input() placeholder: string;
