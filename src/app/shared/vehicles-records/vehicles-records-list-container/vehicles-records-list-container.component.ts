@@ -8,6 +8,7 @@ import {
 import { VehicleRecordModel } from 'src/app/core/models/vehicle-record';
 import { VehiclesRecordsListContainerFacade } from './vehicles-records-list-container.facade';
 import { OptionModel } from 'src/app/core/models/option';
+import { FilterModel } from 'src/app/core/models/filter';
 
 @Component({
   selector: 'parking-vehicles-records-list-container',
@@ -20,6 +21,7 @@ export class VehiclesRecordsListContainerComponent
 {
   vehiclesRecords$: Observable<VehicleRecordModel[]>;
   vehicleToUpdate$: Observable<VehicleRecordModel>;
+  filter$: Observable<FilterModel>;
   isSidebarClose$: Observable<boolean>;
   isLoading$: Observable<boolean>;
   typesServices$: Observable<OptionModel[]>;
@@ -30,7 +32,7 @@ export class VehiclesRecordsListContainerComponent
 
   ngOnInit(): void {
     this.facade.initSubscriptions();
-    this.facade.loadVehiclesRecords();
+    this.facade.setFilter();
     this.facade.loadResources();
     this.initializeSubscriptions();
   }
@@ -59,9 +61,14 @@ export class VehiclesRecordsListContainerComponent
     this.facade.loadVehicleRecord(id);
   }
 
+  handleFilterVehiclesRecords(filter: FilterModel): void {
+    this.facade.setFilter(filter);
+  }
+
   private initializeSubscriptions(): void {
     this.vehiclesRecords$ = this.facade.vehiclesRecords$();
     this.vehicleToUpdate$ = this.facade.currentVehicleRecordToUpdate$();
+    this.filter$ = this.facade.filter$();
     this.isSidebarClose$ = this.facade.isSidebarClose$();
     this.isLoading$ = this.facade.isLoading$();
     this.typesServices$ = this.facade.typesServices$();

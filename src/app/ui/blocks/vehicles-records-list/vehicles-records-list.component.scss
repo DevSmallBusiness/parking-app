@@ -17,6 +17,14 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: styles.func-toRem(2);
+
+    &-right {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: styles.func-toRem(1);
+    }
   }
 
   &__td {
@@ -48,6 +56,10 @@
       align-items: center;
       justify-content: center;
       font-size: styles.func-toRem(0.938);
+
+      &-right {
+        justify-content: center;
+      }
     }
   }
 }

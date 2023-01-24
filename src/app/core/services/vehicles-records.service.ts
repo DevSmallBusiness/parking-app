@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { ToApiVehicleRecordMapper } from 'src/app/core/mappers/vehicles-records/to-api-vehicle-record.mapper';
 import { ApiToVehiclesRecordsMapper } from 'src/app/core/mappers/vehicles-records/api-to-vehicles-records.mapper';
+import { FilterModel } from 'src/app/core/models/filter';
 import { HttpService } from './generals/http.service';
 import { URL_RESOURCE } from '../resources/url.resource';
 import { VehicleRecordModel } from '../models/vehicle-record';
@@ -17,15 +18,20 @@ export class VehiclesRecordsService {
     private toApiVehicleRecordMapper: ToApiVehicleRecordMapper
   ) {}
 
-  getVehiclesRecords(): Observable<VehicleRecordModel[]> {
-    const url = URL_RESOURCE.vehiclesRecords;
-    return this.httpService
-      .get(url)
-      .pipe(
-        map(({ result }) =>
-          this.apiToVehiclesRecordsMapper.mapVehiclesRecords(result)
-        )
-      );
+  getVehiclesRecords(filter: FilterModel): Observable<{
+    vehiclesRecords: VehicleRecordModel[];
+    filter: FilterModel;
+  }> {
+    const url = URL_RESOURCE.paginatedVehiclesRecords;
+    const body = JSON.stringify(filter);
+
+    return this.httpService.post(url, body).pipe(
+      map(({ result, filter }) => ({
+        vehiclesRecords:
+          this.apiToVehiclesRecordsMapper.mapVehiclesRecords(result),
+        filter,
+      }))
+    );
   }
 
   createVehicleRecord(vehicleRecord: VehicleRecordModel): Observable<unknown> {

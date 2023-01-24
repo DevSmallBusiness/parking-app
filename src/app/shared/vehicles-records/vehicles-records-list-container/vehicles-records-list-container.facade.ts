@@ -8,6 +8,7 @@ import {
   finalize,
 } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { FilterModel } from 'src/app/core/models/filter';
 import { OptionModel } from 'src/app/core/models/option';
 
 import { VehicleRecordModel } from 'src/app/core/models/vehicle-record';
@@ -34,6 +35,10 @@ export class VehiclesRecordsListContainerFacade {
 
   currentVehicleRecordToUpdate$(): Observable<VehicleRecordModel> {
     return this.state.vehiclesRecords.currentVehicleRecordToUpdate.$();
+  }
+
+  filter$(): Observable<FilterModel> {
+    return this.state.resources.filter.$();
   }
 
   isSidebarClose$(): Observable<boolean> {
@@ -66,10 +71,25 @@ export class VehiclesRecordsListContainerFacade {
     this.subscriptions.unsubscribe();
   }
 
+  setFilter(filter?: FilterModel): void {
+    this.state.resources.filter.set({
+      from: filter?.from ? (filter?.from - 1) * 10 : 0,
+      limit: filter?.limit ?? 10,
+      sort: { ownerName: 'asc' },
+      term: filter?.term,
+      total: filter?.total,
+      currentPage: filter?.currentPage ?? 1,
+    });
+
+    this.loadVehiclesRecords();
+  }
+
   loadVehiclesRecords(): void {
+    const filter = this.state.resources.filter.snapshot();
+
     this.subscriptions.add(
       this.vehiclesRecordsService
-        .getVehiclesRecords()
+        .getVehiclesRecords(filter)
         .pipe(tap(this.storeVehiclesRecords.bind(this)))
         .subscribe()
     );
@@ -206,8 +226,19 @@ export class VehiclesRecordsListContainerFacade {
     return !lastMessage?.startsWith(errorMessage);
   }
 
-  private storeVehiclesRecords(vehiclesRecords: VehicleRecordModel[]): void {
+  private storeVehiclesRecords({
+    vehiclesRecords,
+    filter,
+  }: {
+    vehiclesRecords: VehicleRecordModel[];
+    filter: FilterModel;
+  }): void {
+    const filterSate = this.state.resources.filter.snapshot();
     this.state.vehiclesRecords.vehiclesRecords.set(vehiclesRecords);
+    this.state.resources.filter.set({
+      ...filter,
+      currentPage: filterSate.currentPage,
+    });
     this.state.resources.isLoading.set(false);
   }
 

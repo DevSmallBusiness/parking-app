@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+
 import { StateFactory } from './factory.state';
+import { FilterModel } from 'src/app/core/models/filter';
 import { OptionModel } from 'src/app/core/models/option';
 
 @Injectable({
@@ -8,6 +10,7 @@ import { OptionModel } from 'src/app/core/models/option';
 })
 export class ResourcesState {
   private canCloseModal$: BehaviorSubject<boolean> = new BehaviorSubject(null);
+  private filter$: BehaviorSubject<FilterModel> = new BehaviorSubject(null);
   private isSidebarClose$: BehaviorSubject<boolean> = new BehaviorSubject(
     false
   );
@@ -24,6 +27,7 @@ export class ResourcesState {
   store() {
     return {
       canCloseModal: this.factory.state(this.canCloseModal$),
+      filter: this.factory.state(this.filter$),
       isSidebarClose: this.factory.state(this.isSidebarClose$),
       isLoading: this.factory.state(this.isLoading$),
       typesServices: this.factory.state(this.typesServices$),

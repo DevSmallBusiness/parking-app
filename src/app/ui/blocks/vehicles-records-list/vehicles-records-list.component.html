@@ -6,13 +6,18 @@
       [size]="'medium'"
       [color]="'white'"
     ></parking-text>
-    <parking-button
-      [type]="'static'"
-      [display]="'inline'"
-      [icon]="'plus-circle'"
-      [label]="'Registrar nuevo vehículo'"
-      (clicked)="modalRef.toggle()"
-    ></parking-button>
+    <div class="vehicles-records__header-right">
+      <parking-form-search
+        (formUpdate)="handleFilterVehiclesRecords($event)"
+      ></parking-form-search>
+      <parking-button
+        [type]="'static'"
+        [display]="'inline'"
+        [icon]="'plus-circle'"
+        [label]="'Registrar nuevo vehículo'"
+        (clicked)="modalRef.toggle()"
+      ></parking-button>
+    </div>
   </div>
 
   <parking-table
@@ -28,6 +33,13 @@
     [itemTemplateRef]="vehiclesRecordsTemplate"
     [isLoading]="isLoading"
   ></parking-table>
+
+  <parking-pagination
+    *ngIf="pages > 1"
+    [totalPages]="pages"
+    [currentPage]="filter.currentPage"
+    (changePage)="handleFilterVehiclesRecords($event)"
+  ></parking-pagination>
 </div>
 
 <ng-template #vehiclesRecordsTemplate let-vehicle="item" let-index="index">

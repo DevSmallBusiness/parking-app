@@ -1,0 +1,57 @@
+<div class="pagination">
+  <div class="pagination__actions">
+    <div class="pagination__prev">
+      <button
+        type="button"
+        class="pagination__button"
+        (click)="handleClickFirst()"
+      >
+        <parking-icon [icon]="'chevrons-left'"></parking-icon>
+      </button>
+    </div>
+    <div class="pagination__prev">
+      <button
+        type="button"
+        class="pagination__button"
+        (click)="handleClickPrev()"
+      >
+        <parking-icon [icon]="'chevron-left'"></parking-icon>
+      </button>
+    </div>
+    <div class="pagination__current">
+      <button
+        *ngFor="let page of pagesList; trackBy: trackPages"
+        type="button"
+        class="pagination__button"
+        [ngClass]="{ 'pagination__button--active': page === currentPage }"
+        (click)="handleClickExact(page)"
+      >
+        <parking-text [text]="page"></parking-text>
+      </button>
+    </div>
+    <div class="pagination__next">
+      <button
+        type="button"
+        class="pagination__button"
+        (click)="handleClickNext()"
+      >
+        <parking-icon [icon]="'chevrons-right'"></parking-icon>
+      </button>
+    </div>
+    <div class="pagination__next">
+      <button
+        type="button"
+        class="pagination__button"
+        (click)="handleClickLast()"
+      >
+        <parking-icon [icon]="'chevron-right'"></parking-icon>
+      </button>
+    </div>
+    <div class="pagination__go">
+      <parking-text
+        [text]="currentPage + ' | ' + totalPages"
+        [weight]="'bold'"
+      ></parking-text>
+    </div>
+  </div>
+</div>

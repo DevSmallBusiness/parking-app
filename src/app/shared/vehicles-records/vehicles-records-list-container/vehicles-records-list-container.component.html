@@ -2,6 +2,7 @@
   *ngIf="{
     vehiclesRecords: (vehiclesRecords$ | async),
     vehicleToUpdate: (vehicleToUpdate$ | async),
+    filter: filter$ | async,
     isSidebarClose: (isSidebarClose$ | async),
     isLoading: (isLoading$ | async),
     typesServices: (typesServices$ | async),
@@ -19,6 +20,7 @@
       <parking-vehicles-records-list
         [vehiclesRecords]="data.vehiclesRecords"
         [vehicleToUpdate]="data.vehicleToUpdate"
+        [filter]="data.filter"
         [isLoading]="data.isLoading"
         [typesServices]="data.typesServices"
         [typesVehicles]="data.typesVehicles"
@@ -27,6 +29,7 @@
         (updateVehicleRecord)="handleUpdateVehicleRecord($event)"
         (deleteVehicleRecord)="handleDeleteVehicleRecord($event)"
         (loadVehicleRecordToUpdate)="handleLoadVehicleRecordToUpdate($event)"
+        (filterVehiclesRecords)="handleFilterVehiclesRecords($event)"
       ></parking-vehicles-records-list>
     </div>
   </div>

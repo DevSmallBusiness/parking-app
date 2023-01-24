@@ -10,6 +10,7 @@ import {
   OnChanges,
 } from '@angular/core';
 import { ServiceStatesEnum } from 'src/app/core/enums/service-states.enum';
+import { FilterModel } from 'src/app/core/models/filter';
 import { OptionModel } from 'src/app/core/models/option';
 import { VehicleRecordModel } from 'src/app/core/models/vehicle-record';
 import { ModalComponent } from 'src/app/ui/elements/modal/modal.component';
@@ -32,16 +33,23 @@ export class VehiclesRecordsListComponent implements OnChanges {
   @Input() typesServices: OptionModel[];
   @Input() typesVehicles: OptionModel[];
   @Input() canCloseModal: boolean;
+  @Input() filter: FilterModel;
+  @Output() deleteVehicleRecord: EventEmitter<string> = new EventEmitter();
+  @Output() filterVehiclesRecords: EventEmitter<FilterModel> =
+    new EventEmitter();
   @Output() createVehicleRecord: EventEmitter<VehicleRecordModel> =
     new EventEmitter();
   @Output() updateVehicleRecord: EventEmitter<VehicleRecordModel> =
     new EventEmitter();
-  @Output() deleteVehicleRecord: EventEmitter<string> = new EventEmitter();
   @Output() loadVehicleRecordToUpdate: EventEmitter<string> =
     new EventEmitter();
   private vehicleRecordId: string;
 
   constructor(private cdRef: ChangeDetectorRef) {}
+
+  get pages(): number {
+    return Math.ceil(this.filter.total / 10);
+  }
 
   ngOnChanges(): void {
     if (!this.canCloseModal) {
@@ -80,6 +88,14 @@ export class VehiclesRecordsListComponent implements OnChanges {
 
   handleLoadVehicleRecordToUpdate(vehicleRecordId: string): void {
     this.loadVehicleRecordToUpdate.emit(vehicleRecordId);
+  }
+
+  handleFilterVehiclesRecords(data: any): void {
+    this.filter =
+      typeof data === 'number'
+        ? { ...this.filter, from: data }
+        : { ...this.filter, term: data.ownerName === '' ? null : data };
+    this.filterVehiclesRecords.emit(this.filter);
   }
 
   validateServiceStatus(

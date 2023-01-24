@@ -1,0 +1,59 @@
+@use "../../_styles/index.scss" as styles;
+
+.pagination {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: styles.$box-wth-block;
+  margin: styles.func-toRem(2) styles.$box-mrg-none;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__button {
+    background-color: styles.$color-bg-white;
+    border: styles.$box-bor-solid styles.$color-bor;
+    border-radius: styles.$box-rad-rounded;
+    width: styles.$box-wth-double;
+    height: styles.$box-hht-double;
+    margin: styles.$box-mrg-none styles.$box-mrg-pagination;
+    outline: none;
+    border: none;
+    transition: styles.$animation-bezier;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.41);
+    }
+
+    &--active {
+      background-color: styles.$color-bg-blue-ligth;
+
+      .text {
+        color: styles.$color-typo-contrast;
+      }
+    }
+  }
+
+  &__go {
+    margin-left: styles.$box-mrg-base;
+  }
+
+  &__current {
+    display: none;
+  }
+}
+
+@media (min-width: styles.$bkp-tablet) {
+  .pagination {
+    &__current {
+      display: block;
+    }
+  }
+}

@@ -7,6 +7,8 @@ import { TableModule } from 'src/app/ui/blocks/table/table.module';
 import { TextModule } from 'src/app/ui/elements/text/text.module';
 import { VehiclesRecordsListComponent } from './vehicles-records-list.component';
 import { ModalModule } from 'src/app/ui/elements/modal/modal.module';
+import { FormSearchModule } from 'src/app/ui/forms/form-search/form-search.module';
+import { PaginationModule } from 'src/app/ui/blocks/pagination/pagination.module';
 
 @NgModule({
   declarations: [VehiclesRecordsListComponent],
@@ -16,7 +18,9 @@ import { ModalModule } from 'src/app/ui/elements/modal/modal.module';
     TextModule,
     ButtonModule,
     ModalModule,
+    PaginationModule,
     FormVehicleModule,
+    FormSearchModule,
   ],
   exports: [VehiclesRecordsListComponent],
 })
