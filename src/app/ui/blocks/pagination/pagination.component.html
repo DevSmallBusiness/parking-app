@@ -20,13 +20,13 @@
     </div>
     <div class="pagination__current">
       <button
-        *ngFor="let page of pagesList; trackBy: trackPages"
+        *ngFor="let in of trackPages(totalPages); let page = index"
         type="button"
         class="pagination__button"
-        [ngClass]="{ 'pagination__button--active': page === currentPage }"
-        (click)="handleClickExact(page)"
+        [ngClass]="{ 'pagination__button--active': page === currentPage - 1 }"
+        (click)="handleClickExact(page + 1)"
       >
-        <parking-text [text]="page"></parking-text>
+        <parking-text [text]="page + 1"></parking-text>
       </button>
     </div>
     <div class="pagination__next">
@@ -35,7 +35,7 @@
         class="pagination__button"
         (click)="handleClickNext()"
       >
-        <parking-icon [icon]="'chevrons-right'"></parking-icon>
+        <parking-icon [icon]="'chevron-right'"></parking-icon>
       </button>
     </div>
     <div class="pagination__next">
@@ -44,7 +44,7 @@
         class="pagination__button"
         (click)="handleClickLast()"
       >
-        <parking-icon [icon]="'chevron-right'"></parking-icon>
+        <parking-icon [icon]="'chevrons-right'"></parking-icon>
       </button>
     </div>
     <div class="pagination__go">

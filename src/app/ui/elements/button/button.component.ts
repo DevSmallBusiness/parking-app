@@ -16,6 +16,7 @@ import {
 })
 export class ButtonComponent {
   @Input() display: 'block' | 'inline' = 'inline';
+  @Input() position: 'end' | 'center' | 'start' = 'start';
   @Input() type: 'default' | 'blank' | 'static' = 'default';
   @Input() icon: string;
   @Input() isDisabled = false;

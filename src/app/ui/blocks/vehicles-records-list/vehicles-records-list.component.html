@@ -23,8 +23,9 @@
   <parking-table
     [headers]="[
       ['Placa', '4rem'],
+      ['Nombre', '4rem'],
       ['Fecha de Ingreso', '4rem'],
-      ['Fecha de Vencimiento', '4rem'],
+      ['Fecha de Salida', '4rem'],
       ['Tipo de Servicio', '4rem'],
       ['Estado del Servicio', '4rem'],
       ['Acciones', '2rem']
@@ -46,6 +47,14 @@
   <td class="vehicles-records__td">
     <parking-text
       [text]="vehicle?.plate"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></parking-text>
+  </td>
+  <td class="vehicles-records__td">
+    <parking-text
+      [text]="vehicle?.ownerName"
       [weight]="'bold'"
       [size]="'base'"
       [color]="'white'"
@@ -105,6 +114,7 @@
 <parking-modal #modalRef>
   <ng-container>
     <parking-form-vehicle
+      #formVehicleRef
       [canResetForm]="canCloseModal"
       [typesServices]="typesServices"
       [typesVehicles]="typesVehicles"

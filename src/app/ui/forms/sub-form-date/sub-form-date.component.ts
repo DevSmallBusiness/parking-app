@@ -4,6 +4,7 @@ import {
   Component,
   ElementRef,
   Input,
+  OnInit,
   Renderer2,
   ViewEncapsulation,
 } from '@angular/core';
@@ -33,16 +34,21 @@ import { TextModule } from 'src/app/ui/elements/text/text.module';
   encapsulation: ViewEncapsulation.None,
   providers: subformComponentProviders(SubFormDateComponent),
 })
-export class SubFormDateComponent {
+export class SubFormDateComponent implements OnInit {
   @Input() label: string;
   @Input() icon: string;
+
+  private isRequiredField: boolean = false;
+  @Input() set isEntryDate(value: boolean) {
+    this.isRequiredField = value;
+  }
 
   public form = createForm<string, VehicleRecordDateModel>(this, {
     formType: FormType.SUB,
     formControls: {
-      day: new UntypedFormControl(null, Validators.required),
-      month: new UntypedFormControl(null, Validators.required),
-      year: new UntypedFormControl(null, Validators.required),
+      day: new UntypedFormControl(null),
+      month: new UntypedFormControl(null),
+      year: new UntypedFormControl(null),
     },
     toFormGroup: (value: string): VehicleRecordDateModel => {
       return {
@@ -55,11 +61,27 @@ export class SubFormDateComponent {
       return `${formValue.year}-${formValue.month}-${formValue.day}`;
     },
     formGroupOptions: {
-      validators: [(formGroup) => this.validateDate(formGroup)],
+      validators: this.isRequiredField
+        ? [(formGroup) => this.validateDate(formGroup)]
+        : null,
     },
   });
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
+
+  ngOnInit(): void {
+    if (this.isRequiredField) {
+      Object.keys(this.form.formGroup.controls).forEach((control) =>
+        this.form.formGroup.controls[control].setValidators([
+          Validators.required,
+        ])
+      );
+    } else {
+      Object.keys(this.form.formGroup.controls).forEach((control) =>
+        this.form.formGroup.controls[control].clearValidators()
+      );
+    }
+  }
 
   handleKeypress(key: string): boolean {
     const pattern = new RegExp('[0-9]');
@@ -100,15 +122,15 @@ export class SubFormDateComponent {
     const month = Number(formGroup.controls.month.value);
     const year = Number(formGroup.controls.year.value);
 
-    if (!(day > 0) || !(day < 32)) {
+    if (day < 0 || day >= 32) {
       return { dayOutRange: true };
     }
 
-    if (!(month > 0) || !(month < 13)) {
+    if (month < 0 || month >= 13) {
       return { monthOutRange: true };
     }
 
-    if (!(year > 0) || !(year <= new Date().getFullYear())) {
+    if (!(year < new Date().getFullYear())) {
       return { yearOutRange: true };
     }
 

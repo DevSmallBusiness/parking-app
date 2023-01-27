@@ -1,3 +1,4 @@
+import { FormVehicleComponent } from './../../forms/form-vehicle/form-vehicle.component';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -26,6 +27,7 @@ export class VehiclesRecordsListComponent implements OnChanges {
   @ViewChild('modalRef') modalRef: ModalComponent;
   @ViewChild('modalDeleteRef') modalDeleteRef: ModalComponent;
   @ViewChild('modalUpdateRef') modalUpdateRef: ModalComponent;
+  @ViewChild('formVehicleRef') formVehicleRef: FormVehicleComponent;
   @Input() vehiclesRecords: VehicleRecordModel[];
   @Input() vehicleToUpdate: VehicleRecordModel;
   @Input() isSidebarClose: boolean;
@@ -59,22 +61,50 @@ export class VehiclesRecordsListComponent implements OnChanges {
     this.modalRef.close();
     this.modalDeleteRef.close();
     this.modalUpdateRef.close();
+    this.formVehicleRef.cleanForm();
     this.cdRef.detectChanges();
   }
 
   handleCreateVehicleRecord(vehicleRecord: VehicleRecordModel): void {
-    vehicleRecord.serviceState = this.validateServiceStatus(
-      vehicleRecord?.receivableValue,
-      vehicleRecord?.moneyPaid
-    );
+    let serviceState: ServiceStatesEnum;
+    let remainingMoney = 0;
+    if (vehicleRecord?.typeService === 'Por Mes') {
+      remainingMoney =
+        vehicleRecord?.receivableValue - vehicleRecord?.moneyPaid;
+      remainingMoney === 0
+        ? (serviceState = ServiceStatesEnum.paid)
+        : (serviceState = ServiceStatesEnum.outstanding);
+    } else {
+      serviceState = ServiceStatesEnum.outstanding;
+    }
+
+    vehicleRecord.serviceState = serviceState;
+    vehicleRecord.remainigMoney = remainingMoney;
     this.createVehicleRecord.emit(vehicleRecord);
   }
 
   handleUpdateVehicleRecord(vehicleRecord: VehicleRecordModel): void {
-    vehicleRecord.serviceState = this.validateServiceStatus(
-      vehicleRecord?.receivableValue,
-      vehicleRecord?.moneyPaid
-    );
+    let serviceState: ServiceStatesEnum;
+    let remainingMoney = 0;
+
+    if (vehicleRecord?.receivableValue > 0) {
+      remainingMoney =
+        vehicleRecord?.receivableValue - vehicleRecord?.moneyPaid;
+
+      if (remainingMoney === 0) {
+        serviceState = ServiceStatesEnum.paid;
+        if (!vehicleRecord.departureDate) {
+          vehicleRecord.departureDate = new Date();
+        }
+      } else {
+        serviceState = ServiceStatesEnum.outstanding;
+      }
+    } else {
+      serviceState = ServiceStatesEnum.outstanding;
+    }
+
+    vehicleRecord.serviceState = serviceState;
+    vehicleRecord.remainigMoney = remainingMoney;
     this.updateVehicleRecord.emit(vehicleRecord);
   }
 
@@ -96,18 +126,5 @@ export class VehiclesRecordsListComponent implements OnChanges {
         ? { ...this.filter, from: data }
         : { ...this.filter, term: data.ownerName === '' ? null : data };
     this.filterVehiclesRecords.emit(this.filter);
-  }
-
-  validateServiceStatus(
-    receivableValue: number,
-    moneyPaid: number
-  ): ServiceStatesEnum {
-    let serviceState: ServiceStatesEnum;
-    const remainingMoney = receivableValue - moneyPaid;
-    remainingMoney === 0
-      ? (serviceState = ServiceStatesEnum.paid)
-      : (serviceState = ServiceStatesEnum.outstanding);
-
-    return serviceState;
   }
 }

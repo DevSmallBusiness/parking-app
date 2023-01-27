@@ -19,14 +19,6 @@ export class PaginationComponent {
   @Input() totalPages: number;
   @Output() changePage: EventEmitter<number> = new EventEmitter();
 
-  get pagesList(): number[] {
-    return [
-      this.currentPage - 1,
-      this.currentPage,
-      this.currentPage + 1,
-    ].filter((pageNumber) => pageNumber >= 1 && pageNumber <= this.totalPages);
-  }
-
   handleClickPrev(): void {
     if (this.currentPage === 1) {
       return;
@@ -58,8 +50,8 @@ export class PaginationComponent {
     this.emitPage();
   }
 
-  trackPages(index: number): number {
-    return index;
+  trackPages(index: number): Array<number> {
+    return new Array(index);
   }
 
   private emitPage(): void {

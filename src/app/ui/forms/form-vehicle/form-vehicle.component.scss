@@ -6,8 +6,7 @@
   align-items: center;
 
   &__section,
-  &__description,
-  &__file {
+  &__description {
     gap: styles.$box-pad-base;
     display: grid;
     min-width: 0;
@@ -15,16 +14,12 @@
     margin: 0;
     border: 0;
   }
-
-  &__file {
-    row-gap: styles.$box-pad-base;
-  }
 }
 
-@media (min-width: styles.$bkp-tablet) {
-  .form-vehicle-record {
-    &__section {
-      grid-template-columns: repeat(2, styles.$box-fr-base);
-    }
-  }
-}
+// @media (min-width: styles.$bkp-tablet) {
+//   .form-vehicle-record {
+//     &__section {
+//       grid-template-columns: repeat(2, styles.$box-fr-base);
+//     }
+//   }
+// }

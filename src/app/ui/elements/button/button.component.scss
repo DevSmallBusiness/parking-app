@@ -1,6 +1,21 @@
 @use "../../_styles/index.scss" as styles;
 
+.button__container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &--end {
+    justify-content: flex-end;
+  }
+
+  &--center {
+    justify-content: center;
+  }
+}
+
 .button {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;

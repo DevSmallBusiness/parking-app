@@ -43,6 +43,10 @@
 
   &__go {
     margin-left: styles.$box-mrg-base;
+
+    .text {
+      color: styles.$color-bg-white;
+    }
   }
 
   &__current {

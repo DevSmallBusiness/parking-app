@@ -1,15 +1,17 @@
-<button
-  class="button button--{{ display }} button--{{ type }}"
-  type="button"
-  [ngClass]="{ 'button--disabled': isDisabled, 'button--active': isActive }"
-  [disabled]="isDisabled"
-  (click)="handleClick()"
->
-  <parking-icon *ngIf="icon" [icon]="icon"></parking-icon>
-  <parking-text
-    *ngIf="label"
-    [type]="'line'"
-    [weight]="'bold'"
-    [text]="label"
-  ></parking-text>
-</button>
+<div class="button__container button__container--{{ position }}">
+  <button
+    class="button button--{{ display }} button--{{ type }}"
+    type="button"
+    [ngClass]="{ 'button--disabled': isDisabled, 'button--active': isActive }"
+    [disabled]="isDisabled"
+    (click)="handleClick()"
+  >
+    <parking-icon *ngIf="icon" [icon]="icon"></parking-icon>
+    <parking-text
+      *ngIf="label"
+      [type]="'line'"
+      [weight]="'bold'"
+      [text]="label"
+    ></parking-text>
+  </button>
+</div>

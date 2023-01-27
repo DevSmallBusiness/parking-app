@@ -11,7 +11,7 @@
   &__card {
     @include styles.animation-scale-up-top;
     max-width: styles.$box-wth-modal-mobile;
-    max-height: styles.$box-hht-modal;
+    height: auto;
     position: relative;
   }
 
@@ -23,10 +23,22 @@
   }
 
   &__content {
-    height: styles.$box-hht-modal-inner;
+    height: auto;
     margin-top: styles.$box-mrg-onehalf;
     overflow-y: auto;
     position: relative;
+    padding: styles.func-toRem(0.625);
+
+    &::-webkit-scrollbar {
+      width: 0.4rem;
+      height: 0.4rem;
+      background: #d9d9d9;
+
+      &-thumb {
+        background: styles.$color-bg-blue-ligth;
+        border-radius: 0.5rem;
+      }
+    }
 
     &::before,
     &::after {
