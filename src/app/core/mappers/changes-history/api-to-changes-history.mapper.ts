@@ -10,7 +10,7 @@ import { ChangeHistoryModel } from 'src/app/core/models/change-history';
 })
 export class ApiToChangesHistoryMapper {
   mapChangesHistory(result: any[]): ChangeHistoryModel[] {
-    if (!result.length) {
+    if (!result && !result?.length) {
       return [];
     }
 

@@ -1,6 +1,7 @@
 import { ServiceStatesEnum } from 'src/app/core/enums/service-states.enum';
 import { TypeVehicleEnum } from 'src/app/core/enums/type-vehicle.enum';
 import { TypeServiceEnum } from 'src/app/core/enums/type-service.enum';
+
 export interface VehicleRecordModel {
   _id?: string;
   typeService?: TypeServiceEnum;

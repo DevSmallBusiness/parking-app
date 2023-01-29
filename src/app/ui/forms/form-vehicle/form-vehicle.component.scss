@@ -16,10 +16,10 @@
   }
 }
 
-// @media (min-width: styles.$bkp-tablet) {
-//   .form-vehicle-record {
-//     &__section {
-//       grid-template-columns: repeat(2, styles.$box-fr-base);
-//     }
-//   }
-// }
+@media (min-width: styles.$bkp-tablet) {
+  .form-vehicle-record {
+    &__section {
+      grid-template-columns: repeat(2, styles.$box-fr-base);
+    }
+  }
+}

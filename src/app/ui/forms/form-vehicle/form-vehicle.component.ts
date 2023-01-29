@@ -4,7 +4,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnChanges,
   OnInit,
   Output,
 } from '@angular/core';
@@ -21,21 +20,19 @@ import { OptionModel } from 'src/app/core/models/option';
 })
 export class FormVehicleComponent implements OnInit {
   @Input() canResetForm: boolean;
-  @Input() isEditing: boolean;
   @Input() typesServices: OptionModel[];
   @Input() typesVehicles: OptionModel[];
-  showField: boolean = false;
-  currentVehicle: VehicleRecordModel;
+  showSaveButton: boolean;
 
   public manualSave$: Subject<void> = new Subject();
   private input$: Subject<VehicleRecordModel> = new Subject();
   @Input() set dataInput(value: VehicleRecordModel) {
-    this.currentVehicle = value;
     this.input$.next(value);
   }
 
   private disabled$: Subject<boolean> = new Subject();
   @Input() set disabled(value: boolean) {
+    this.showSaveButton = value;
     this.disabled$.next(!!value);
   }
 
@@ -64,6 +61,8 @@ export class FormVehicleComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.form.formGroup.controls.remainigMoney.disable();
+
     this.form.formGroup.controls['moneyPaid'].valueChanges.subscribe(
       (value) => {
         const receivableValue =

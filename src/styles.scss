@@ -9,3 +9,27 @@
 body {
   background-color: styles.$color-bg-blue-dark;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: styles.func-toRem(0.625);
+}
+
+::-webkit-scrollbar-track {
+  width: styles.func-toRem(0.625);
+  background: styles.$color-bg-white;
+  border-left: styles.$box-bor-solid styles.$color-bg-white;
+  border-right: styles.$box-bor-solid styles.$color-bg-white;
+  border-radius: styles.func-toRem(0.4375);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: styles.$color-bg-blue-ligth;
+  width: 0;
+  height: 15%;
+  transition: 0.5s ease;
+  border-radius: styles.func-toRem(0.4375);
+}

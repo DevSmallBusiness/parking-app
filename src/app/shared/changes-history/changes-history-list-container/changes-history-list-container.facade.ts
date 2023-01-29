@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Subscription, Observable, EMPTY, catchError } from 'rxjs';
+import { Subscription, Observable, EMPTY, catchError, merge } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
 import { ChangeHistoryModel } from 'src/app/core/models/change-history';
+import { OptionModel } from 'src/app/core/models/option';
 import { ChangesHistoryService } from 'src/app/core/services/changes-history.service';
+import { ResourcesService } from 'src/app/core/services/resources.service';
 import { AppState } from 'src/app/core/state/app.state';
 
 @Injectable({
@@ -14,7 +16,8 @@ export class ChangesHistoryListContainerFacade {
 
   constructor(
     private state: AppState,
-    private changesHistoryService: ChangesHistoryService
+    private changesHistoryService: ChangesHistoryService,
+    private resourcesService: ResourcesService
   ) {}
 
   //#region Observables
@@ -32,6 +35,14 @@ export class ChangesHistoryListContainerFacade {
 
   isLoading$(): Observable<boolean> {
     return this.state.resources.isLoading.$();
+  }
+
+  typesServices$(): Observable<OptionModel[]> {
+    return this.state.resources.typesServices.$();
+  }
+
+  typesVehicles$(): Observable<OptionModel[]> {
+    return this.state.resources.typesVehicles.$();
   }
 
   canCloseModal$(): Observable<boolean> {
@@ -73,6 +84,24 @@ export class ChangesHistoryListContainerFacade {
     this.state.changesHistory.currentChangeHistoryToView.set(null);
   }
 
+  loadResources(): void {
+    this.subscriptions.add(
+      merge(
+        this.resourcesService
+          .getTypesServices()
+          .pipe(tap(this.storeTypesServices.bind(this))),
+        this.resourcesService
+          .getTypesVehicles()
+          .pipe(tap(this.storeTypesVehicles.bind(this)))
+      ).subscribe()
+    );
+  }
+
+  destroyResources(): void {
+    this.state.resources.typesServices.set([]);
+    this.state.resources.typesVehicles.set([]);
+  }
+
   createChangeHistory(changeHistory: ChangeHistoryModel): void {
     const callback = this.loadChangesHistory.bind(this);
 
@@ -97,6 +126,22 @@ export class ChangesHistoryListContainerFacade {
     this.subscriptions.add(
       this.changesHistoryService
         .deleteChangeHistory(id)
+        .pipe(
+          tap(this.notify.bind(this, 'complete', callback)),
+          catchError(this.notify.bind(this, 'error', null)),
+          finalize(this.notifyClose.bind(this))
+        )
+        .subscribe()
+    );
+  }
+
+  deleteAllChangesHistory(): void {
+    const callback = this.loadChangesHistory.bind(this);
+
+    this.notify('init');
+    this.subscriptions.add(
+      this.changesHistoryService
+        .deleteAllChangesHistory()
         .pipe(
           tap(this.notify.bind(this, 'complete', callback)),
           catchError(this.notify.bind(this, 'error', null)),
@@ -156,6 +201,14 @@ export class ChangesHistoryListContainerFacade {
   private storeChangesHistory(changesHistory: ChangeHistoryModel[]): void {
     this.state.changesHistory.changesHistory.set(changesHistory);
     this.state.resources.isLoading.set(false);
+  }
+
+  private storeTypesServices(typesServices: OptionModel[]): void {
+    this.state.resources.typesServices.set(typesServices);
+  }
+
+  private storeTypesVehicles(typesVehicles: OptionModel[]): void {
+    this.state.resources.typesVehicles.set(typesVehicles);
   }
 
   private storeCanCloseModal(value: boolean): void {

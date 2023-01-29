@@ -3,7 +3,7 @@
 .navbar {
   &__container {
     position: fixed;
-    width: styles.func-toRem(15.625);
+    width: styles.func-toRem(13);
     height: styles.$box-hht-block;
     transition: 0.5s;
     overflow: hidden;

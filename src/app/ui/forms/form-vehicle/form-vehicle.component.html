@@ -80,6 +80,7 @@
   </fieldset>
 
   <parking-button
+    *ngIf="!showSaveButton"
     [label]="'Guardar'"
     [type]="'static'"
     [position]="'end'"

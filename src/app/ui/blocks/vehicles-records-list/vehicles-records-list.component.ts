@@ -58,22 +58,23 @@ export class VehiclesRecordsListComponent implements OnChanges {
       return;
     }
 
-    this.modalRef.close();
-    this.modalDeleteRef.close();
-    this.modalUpdateRef.close();
-    this.formVehicleRef.cleanForm();
+    this.modalRef?.close();
+    this.modalDeleteRef?.close();
+    this.modalUpdateRef?.close();
+    this.formVehicleRef?.cleanForm();
     this.cdRef.detectChanges();
   }
 
   handleCreateVehicleRecord(vehicleRecord: VehicleRecordModel): void {
     let serviceState: ServiceStatesEnum;
     let remainingMoney = 0;
-    if (vehicleRecord?.typeService === 'Por Mes') {
-      remainingMoney =
-        vehicleRecord?.receivableValue - vehicleRecord?.moneyPaid;
-      remainingMoney === 0
-        ? (serviceState = ServiceStatesEnum.paid)
-        : (serviceState = ServiceStatesEnum.outstanding);
+
+    remainingMoney = vehicleRecord?.receivableValue - vehicleRecord?.moneyPaid;
+    if (remainingMoney === 0) {
+      serviceState = ServiceStatesEnum.paid;
+      if (!vehicleRecord.departureDate) {
+        vehicleRecord.departureDate = new Date();
+      }
     } else {
       serviceState = ServiceStatesEnum.outstanding;
     }

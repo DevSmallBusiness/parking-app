@@ -10,7 +10,7 @@ import { VehicleRecordModel } from 'src/app/core/models/vehicle-record';
 })
 export class ApiToVehiclesRecordsMapper {
   mapVehiclesRecords(result: any[]): VehicleRecordModel[] {
-    if (!result.length) {
+    if (!result && !result?.length) {
       return [];
     }
 

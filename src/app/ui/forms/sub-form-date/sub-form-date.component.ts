@@ -58,7 +58,7 @@ export class SubFormDateComponent implements OnInit {
       };
     },
     fromFormGroup: (formValue: VehicleRecordDateModel): string => {
-      return `${formValue.year}-${formValue.month}-${formValue.day}`;
+      return `${formValue.month}-${formValue.day}-${formValue.year}`;
     },
     formGroupOptions: {
       validators: this.isRequiredField

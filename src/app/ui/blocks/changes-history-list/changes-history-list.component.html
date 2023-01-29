@@ -9,17 +9,19 @@
     <parking-button
       [type]="'static'"
       [display]="'inline'"
-      [icon]="'plus-circle'"
+      [icon]="'trash-alt'"
       [label]="'ELiminar todo'"
-      (clicked)="handleDeleteAllHistory()"
+      (clicked)="modalDeleteAllRef.toggle()"
     ></parking-button>
   </div>
 
   <parking-table
     [headers]="[
       ['Placa', '4rem'],
+      ['Nombre', '4rem'],
+      ['Fecha de Creación', '4rem'],
       ['Fecha de Ingreso', '4rem'],
-      ['Fecha de Vencimiento', '4rem'],
+      ['Fecha de Salida', '4rem'],
       ['Tipo de Servicio', '4rem'],
       ['Estado del Servicio', '4rem'],
       ['Acciones', '2rem']
@@ -34,6 +36,22 @@
   <td class="changes-history__td">
     <parking-text
       [text]="change?.plate"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></parking-text>
+  </td>
+  <td class="vehicles-records__td">
+    <parking-text
+      [text]="change?.ownerName"
+      [weight]="'bold'"
+      [size]="'base'"
+      [color]="'white'"
+    ></parking-text>
+  </td>
+  <td class="changes-history__td">
+    <parking-text
+      [text]="change?.creationDate | date : 'dd-MM-yyyy'"
       [weight]="'bold'"
       [size]="'base'"
       [color]="'white'"
@@ -75,7 +93,7 @@
   <td class="changes-history__td changes-history__td--buttons">
     <parking-button
       [display]="'block'"
-      [icon]="'edit'"
+      [icon]="'message-square-detail'"
       [type]="'static'"
       (clicked)="
         handleLoadChangeHistoryToView(change._id); modalViewRef.toggle()
@@ -91,7 +109,15 @@
 </ng-template>
 
 <parking-modal #modalViewRef>
-  <ng-container> </ng-container>
+  <ng-container>
+    <parking-form-vehicle
+      [dataInput]="changeToView"
+      [canResetForm]="canCloseModal"
+      [typesServices]="typesServices"
+      [typesVehicles]="typesVehicles"
+      [disabled]="true"
+    ></parking-form-vehicle>
+  </ng-container>
 </parking-modal>
 
 <parking-modal #modalDeleteRef [auto]="true">
@@ -107,6 +133,23 @@
       [label]="'Eliminar'"
       [type]="'static'"
       (clicked)="modalDeleteRef.toggle(); handleDeleteChangeHistory()"
+    ></parking-button>
+  </ng-container>
+</parking-modal>
+
+<parking-modal #modalDeleteAllRef [auto]="true">
+  <ng-container>
+    <parking-text
+      [text]="'¿Estás seguro de que deseas eliminar todos los registros?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+      [color]="'white'"
+    ></parking-text>
+    <parking-button
+      class="changes-history__button"
+      [label]="'Eliminar'"
+      [type]="'static'"
+      (clicked)="modalDeleteAllRef.toggle(); handleDeleteAllHistory()"
     ></parking-button>
   </ng-container>
 </parking-modal>

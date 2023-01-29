@@ -1,9 +1,11 @@
 <ng-container
   *ngIf="{
     changesHistory: (changesHistory$ | async),
-    changeToView$: (changeToView$ | async),
+    changeToView: (changeToView$ | async),
     isSidebarClose: (isSidebarClose$ | async),
     isLoading: (isLoading$ | async),
+    typesServices: (typesServices$ | async),
+    typesVehicles: (typesVehicles$ | async),
     canCloseModal: (canCloseModal$ | async)
   } as data"
 >
@@ -16,10 +18,15 @@
     <div class="changes-history__content">
       <parking-changes-history-list
         [changesHistory]="data.changesHistory"
-        [changeToView]="data.changesHistory"
+        [changeToView]="data.changeToView"
         [isLoading]="data.isLoading"
+        [typesServices]="data.typesServices"
+        [typesVehicles]="data.typesVehicles"
         [isSidebarClose]="data.isSidebarClose"
         [canCloseModal]="data.canCloseModal"
+        (deleteChangeHistory)="handleDeleteChangeHistory($event)"
+        (deleteAllHistory)="handleDeleteAllHistory()"
+        (loadChangeHistoryToView)="handleLoadChangeHistoryToView($event)"
       ></parking-changes-history-list>
     </div>
   </div>

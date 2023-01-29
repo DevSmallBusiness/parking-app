@@ -32,7 +32,7 @@
     &::-webkit-scrollbar {
       width: 0.4rem;
       height: 0.4rem;
-      background: #d9d9d9;
+      background: styles.$color-bg-white;
 
       &-thumb {
         background: styles.$color-bg-blue-ligth;

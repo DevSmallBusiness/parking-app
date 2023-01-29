@@ -10,6 +10,17 @@
 
   &__scroll {
     overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      width: 0.4rem;
+      height: 0.6rem;
+      background: styles.$color-bg-white;
+
+      &-thumb {
+        background: styles.$color-bg-blue-ligth;
+        border-radius: 0.5rem;
+      }
+    }
   }
 
   &__table {

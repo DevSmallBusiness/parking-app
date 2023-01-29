@@ -46,4 +46,9 @@ export class ChangesHistoryService {
     const url = URL_RESOURCE.deleteChangeHistory(id);
     return this.httpService.delete(url);
   }
+
+  deleteAllChangesHistory(): Observable<any> {
+    const url = URL_RESOURCE.changesHistory;
+    return this.httpService.delete(url);
+  }
 }
