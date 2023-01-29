@@ -48,6 +48,11 @@ export class VehiclesRecordsService {
       .pipe(map(({ result }) => result?._id));
   }
 
+  updateExpiredStatusToVehiclesRecords(): Observable<any> {
+    const url = URL_RESOURCE.updateExpiredStatusToVehiclesRecords;
+    return this.httpService.post(url);
+  }
+
   deleteVehicleRecord(id: string): Observable<any> {
     const url = URL_RESOURCE.deleteVehicleRecord(id);
     return this.httpService.delete(url);

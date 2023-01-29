@@ -75,7 +75,7 @@ export class VehiclesRecordsListContainerFacade {
     this.state.resources.filter.set({
       from: filter?.from && !isSearching ? (filter?.from - 1) * 10 : 0,
       limit: filter?.limit ?? 10,
-      sort: { ownerName: 'asc' },
+      sort: { serviceState: -1 },
       term: filter?.term,
       total: filter?.total,
       currentPage: filter?.currentPage ?? 1,
