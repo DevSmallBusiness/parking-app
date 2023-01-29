@@ -8,7 +8,7 @@
     ></parking-text>
     <div class="vehicles-records__header-right">
       <parking-form-search
-        (formUpdate)="handleFilterVehiclesRecords($event)"
+        (formUpdate)="handleFilterVehiclesRecords($event, true)"
       ></parking-form-search>
       <parking-button
         [type]="'static'"
@@ -47,7 +47,7 @@
     *ngIf="pages > 1"
     [totalPages]="pages"
     [currentPage]="filter.currentPage"
-    (changePage)="handleFilterVehiclesRecords($event)"
+    (changePage)="handleFilterVehiclesRecords($event, false)"
   ></parking-pagination>
 </div>
 

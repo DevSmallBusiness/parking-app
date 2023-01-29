@@ -61,8 +61,8 @@ export class VehiclesRecordsListContainerComponent
     this.facade.loadVehicleRecord(id);
   }
 
-  handleFilterVehiclesRecords(filter: FilterModel): void {
-    this.facade.setFilter(filter);
+  handleFilterVehiclesRecords({ filter, isSearching }): void {
+    this.facade.setFilter(filter, isSearching);
   }
 
   handleDeleteVehiclesRecordsByField({ field, value }): void {

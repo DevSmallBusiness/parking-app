@@ -38,8 +38,10 @@ export class VehiclesRecordsListComponent implements OnChanges {
   @Input() canCloseModal: boolean;
   @Input() filter: FilterModel;
   @Output() deleteVehicleRecord: EventEmitter<string> = new EventEmitter();
-  @Output() filterVehiclesRecords: EventEmitter<FilterModel> =
-    new EventEmitter();
+  @Output() filterVehiclesRecords: EventEmitter<{
+    filter: FilterModel;
+    isSearching: boolean;
+  }> = new EventEmitter();
   @Output() createVehicleRecord: EventEmitter<VehicleRecordModel> =
     new EventEmitter();
   @Output() updateVehicleRecord: EventEmitter<VehicleRecordModel> =
@@ -140,11 +142,11 @@ export class VehiclesRecordsListComponent implements OnChanges {
     });
   }
 
-  handleFilterVehiclesRecords(data: any): void {
+  handleFilterVehiclesRecords(data: any, isSearching: boolean): void {
     this.filter =
       typeof data === 'number'
         ? { ...this.filter, from: data }
         : { ...this.filter, term: data.ownerName === '' ? null : data };
-    this.filterVehiclesRecords.emit(this.filter);
+    this.filterVehiclesRecords.emit({ filter: this.filter, isSearching });
   }
 }

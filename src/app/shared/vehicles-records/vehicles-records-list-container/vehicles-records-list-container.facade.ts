@@ -71,9 +71,9 @@ export class VehiclesRecordsListContainerFacade {
     this.subscriptions.unsubscribe();
   }
 
-  setFilter(filter?: FilterModel): void {
+  setFilter(filter?: FilterModel, isSearching?: boolean): void {
     this.state.resources.filter.set({
-      from: filter?.from ? (filter?.from - 1) * 10 : 0,
+      from: filter?.from && !isSearching ? (filter?.from - 1) * 10 : 0,
       limit: filter?.limit ?? 10,
       sort: { ownerName: 'asc' },
       term: filter?.term,
