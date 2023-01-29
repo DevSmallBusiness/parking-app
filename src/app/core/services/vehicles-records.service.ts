@@ -52,4 +52,9 @@ export class VehiclesRecordsService {
     const url = URL_RESOURCE.deleteVehicleRecord(id);
     return this.httpService.delete(url);
   }
+
+  deleteVehiclesRecordsByField({ field, value }): Observable<any> {
+    const url = URL_RESOURCE.deleteVehiclesRecordsByField(field, value);
+    return this.httpService.delete(url);
+  }
 }

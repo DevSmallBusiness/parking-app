@@ -65,6 +65,10 @@ export class VehiclesRecordsListContainerComponent
     this.facade.setFilter(filter);
   }
 
+  handleDeleteVehiclesRecordsByField({ field, value }): void {
+    this.facade.deleteVehiclesRecordsByField({ field, value });
+  }
+
   private initializeSubscriptions(): void {
     this.vehiclesRecords$ = this.facade.vehiclesRecords$();
     this.vehicleToUpdate$ = this.facade.currentVehicleRecordToUpdate$();

@@ -17,6 +17,14 @@
         [label]="'Registrar nuevo vehículo'"
         (clicked)="modalRef.toggle()"
       ></parking-button>
+      <parking-button
+        *ngIf="showButtonToDeleteAllVehiclesAlreadyPaid"
+        [type]="'static'"
+        [display]="'inline'"
+        [icon]="'trash-alt'"
+        [label]="'Eliminar todos los registros ya pagados'"
+        (clicked)="modalDeleteAllRef.toggle()"
+      ></parking-button>
     </div>
   </div>
 
@@ -149,6 +157,27 @@
       [label]="'Eliminar'"
       [type]="'static'"
       (clicked)="modalDeleteRef.toggle(); handleDeleteVehicleRecord()"
+    ></parking-button>
+  </ng-container>
+</parking-modal>
+
+<parking-modal #modalDeleteAllRef [auto]="true">
+  <ng-container>
+    <parking-text
+      [text]="
+        '¿Estás seguro de que deseas eliminar todos los registros ya pagados?'
+      "
+      [weight]="'bold'"
+      [size]="'medium'"
+      [color]="'white'"
+    ></parking-text>
+    <parking-button
+      class="vehicles-records__button"
+      [label]="'Eliminar'"
+      [type]="'static'"
+      (clicked)="
+        modalDeleteAllRef.toggle(); handleDeleteAlreadyPaidVehiclesRecords()
+      "
     ></parking-button>
   </ng-container>
 </parking-modal>

@@ -179,6 +179,22 @@ export class VehiclesRecordsListContainerFacade {
     );
   }
 
+  deleteVehiclesRecordsByField({ field, value }): void {
+    const callback = this.loadVehiclesRecords.bind(this);
+
+    this.notify('init');
+    this.subscriptions.add(
+      this.vehiclesRecordsService
+        .deleteVehiclesRecordsByField({ field, value })
+        .pipe(
+          tap(this.notify.bind(this, 'complete', callback)),
+          catchError(this.notify.bind(this, 'error', null)),
+          finalize(this.notifyClose.bind(this))
+        )
+        .subscribe()
+    );
+  }
+
   destroyIsLoading(): void {
     this.state.resources.isLoading.set(true);
   }

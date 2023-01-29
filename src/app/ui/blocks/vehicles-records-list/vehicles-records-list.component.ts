@@ -26,6 +26,7 @@ import { ModalComponent } from 'src/app/ui/elements/modal/modal.component';
 export class VehiclesRecordsListComponent implements OnChanges {
   @ViewChild('modalRef') modalRef: ModalComponent;
   @ViewChild('modalDeleteRef') modalDeleteRef: ModalComponent;
+  @ViewChild('modalDeleteAllRef') modalDeleteAllRef: ModalComponent;
   @ViewChild('modalUpdateRef') modalUpdateRef: ModalComponent;
   @ViewChild('formVehicleRef') formVehicleRef: FormVehicleComponent;
   @Input() vehiclesRecords: VehicleRecordModel[];
@@ -45,12 +46,22 @@ export class VehiclesRecordsListComponent implements OnChanges {
     new EventEmitter();
   @Output() loadVehicleRecordToUpdate: EventEmitter<string> =
     new EventEmitter();
+  @Output() deleteVehiclesRecordsByField: EventEmitter<{
+    field: string;
+    value: string;
+  }> = new EventEmitter();
   private vehicleRecordId: string;
 
   constructor(private cdRef: ChangeDetectorRef) {}
 
   get pages(): number {
     return Math.ceil(this.filter.total / 10);
+  }
+
+  get showButtonToDeleteAllVehiclesAlreadyPaid(): boolean {
+    return this.vehiclesRecords.some((e) => {
+      return e.serviceState == 'PAGADO' ? true : false;
+    });
   }
 
   ngOnChanges(): void {
@@ -60,6 +71,7 @@ export class VehiclesRecordsListComponent implements OnChanges {
 
     this.modalRef?.close();
     this.modalDeleteRef?.close();
+    this.modalDeleteAllRef?.close();
     this.modalUpdateRef?.close();
     this.formVehicleRef?.cleanForm();
     this.cdRef.detectChanges();
@@ -119,6 +131,13 @@ export class VehiclesRecordsListComponent implements OnChanges {
 
   handleLoadVehicleRecordToUpdate(vehicleRecordId: string): void {
     this.loadVehicleRecordToUpdate.emit(vehicleRecordId);
+  }
+
+  handleDeleteAlreadyPaidVehiclesRecords(): void {
+    this.deleteVehiclesRecordsByField.emit({
+      field: 'serviceState',
+      value: 'PAGADO',
+    });
   }
 
   handleFilterVehiclesRecords(data: any): void {
