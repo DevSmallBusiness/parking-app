@@ -83,11 +83,17 @@ export class VehiclesRecordsListComponent implements OnChanges {
     let serviceState: ServiceStatesEnum;
     let remainingMoney = 0;
 
-    remainingMoney = vehicleRecord?.receivableValue - vehicleRecord?.moneyPaid;
-    if (remainingMoney === 0) {
-      serviceState = ServiceStatesEnum.paid;
-      if (!vehicleRecord.departureDate) {
-        vehicleRecord.departureDate = new Date();
+    if (vehicleRecord?.receivableValue > 0) {
+      remainingMoney =
+        vehicleRecord?.receivableValue - vehicleRecord?.moneyPaid;
+
+      if (remainingMoney === 0) {
+        serviceState = ServiceStatesEnum.paid;
+        if (!vehicleRecord.departureDate) {
+          vehicleRecord.departureDate = new Date();
+        }
+      } else {
+        serviceState = ServiceStatesEnum.outstanding;
       }
     } else {
       serviceState = ServiceStatesEnum.outstanding;

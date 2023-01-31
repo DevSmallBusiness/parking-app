@@ -40,6 +40,7 @@
           [type]="'text'"
           [placeholder]="'Año..'"
           [maxlength]="4"
+          [minlength]="4"
           [formControlName]="form.formControlNames.year"
           (keypress)="handleKeypress($event.key)"
           (focus)="handleFocus()"
