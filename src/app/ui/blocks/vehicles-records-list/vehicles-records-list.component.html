@@ -70,7 +70,7 @@
   </td>
   <td class="vehicles-records__td">
     <parking-text
-      [text]="vehicle?.entryDate | date : 'dd-MM-yyyy'"
+      [text]="vehicle?.entryDate | date : 'dd-MM-yyyy, h:mm a'"
       [weight]="'bold'"
       [size]="'base'"
       [color]="'white'"
@@ -78,7 +78,7 @@
   </td>
   <td class="vehicles-records__td">
     <parking-text
-      [text]="vehicle?.departureDate | date : 'dd-MM-yyyy'"
+      [text]="vehicle?.departureDate | date : 'dd-MM-yyyy, h:mm a'"
       [weight]="'bold'"
       [size]="'base'"
       [color]="'white'"
@@ -92,7 +92,11 @@
       [color]="'white'"
     ></parking-text>
   </td>
-  <td class="vehicles-records__td">
+  <td
+    class="vehicles-records__td vehicles-records__td--{{
+      vehicle?.serviceState
+    }}"
+  >
     <parking-text
       [text]="vehicle?.serviceState"
       [weight]="'bold'"
@@ -106,7 +110,6 @@
       [display]="'block'"
       [icon]="'edit'"
       [type]="'static'"
-      [isDisabled]="vehicle?.serviceState === 'PAGADO' ? true : false"
       (clicked)="
         handleLoadVehicleRecordToUpdate(vehicle._id); modalUpdateRef.toggle()
       "

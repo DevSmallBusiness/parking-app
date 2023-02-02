@@ -14,6 +14,12 @@
     margin: 0;
     border: 0;
   }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 @media (min-width: styles.$bkp-tablet) {

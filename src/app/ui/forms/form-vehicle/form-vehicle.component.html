@@ -39,22 +39,6 @@
       [formControlName]="form.formControlNames.ownerNumber"
     ></parking-sub-form-input>
 
-    <parking-sub-form-date
-      [label]="'Fecha de Ingreso'"
-      [icon]="'calendar'"
-      [isEntryDate]="true"
-      [formControlName]="form.formControlNames.entryDate"
-    ></parking-sub-form-date>
-  </fieldset>
-
-  <fieldset class="form-vehicle-record__section">
-    <parking-sub-form-date
-      [label]="'Fecha de Salida'"
-      [icon]="'calendar'"
-      [isEntryDate]="false"
-      [formControlName]="form.formControlNames.departureDate"
-    ></parking-sub-form-date>
-
     <parking-sub-form-input
       [type]="'number'"
       [label]="'Valor a cobrar'"
@@ -79,12 +63,25 @@
     ></parking-sub-form-input>
   </fieldset>
 
-  <parking-button
-    *ngIf="!showSaveButton"
-    [label]="'Guardar'"
-    [type]="'static'"
-    [position]="'end'"
-    [isDisabled]="form.formGroup.invalid || form.formGroup.disabled"
-    (clicked)="manualSave$.next()"
-  ></parking-button>
+  <div class="form-vehicle-record__footer">
+    <parking-text
+      *ngIf="showTextFooter && !showSaveButton"
+      [type]="'text'"
+      [size]="'medium'"
+      [weight]="'bold'"
+      [color]="'white'"
+      [text]="'Cantidad de horas en servicio: ' + numberServiceHours"
+    ></parking-text>
+
+    <parking-button
+      *ngIf="!showSaveButton"
+      [label]="'Guardar'"
+      [type]="'static'"
+      [position]="'end'"
+      [isDisabled]="
+        form.formGroup.invalid || form.formGroup.disabled || disableSaveButton
+      "
+      (clicked)="manualSave$.next()"
+    ></parking-button>
+  </div>
 </form>

@@ -23,10 +23,20 @@ export class FormVehicleComponent implements OnInit {
   @Input() typesServices: OptionModel[];
   @Input() typesVehicles: OptionModel[];
   showSaveButton: boolean;
+  disableSaveButton: boolean;
+  showTextFooter: boolean;
+  numberServiceHours: number = 0;
+  vehicleRecord: VehicleRecordModel;
 
   public manualSave$: Subject<void> = new Subject();
   private input$: Subject<VehicleRecordModel> = new Subject();
   @Input() set dataInput(value: VehicleRecordModel) {
+    this.validateRegistrationStates(
+      value?.serviceState,
+      value?.entryDate,
+      value?.departureDate
+    );
+    this.showTextFooter = value?.typeService === 'Por Mes' ? false : true;
     this.input$.next(value);
   }
 
@@ -49,7 +59,7 @@ export class FormVehicleComponent implements OnInit {
       plate: new UntypedFormControl(null, Validators.required),
       ownerName: new UntypedFormControl(null, Validators.required),
       ownerNumber: new UntypedFormControl(null, Validators.required),
-      entryDate: new UntypedFormControl(null, Validators.required),
+      entryDate: new UntypedFormControl(null),
       departureDate: new UntypedFormControl(null),
       receivableValue: new UntypedFormControl(null),
       moneyPaid: new UntypedFormControl(null),
@@ -61,6 +71,10 @@ export class FormVehicleComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.observeFormChanges();
+  }
+
+  observeFormChanges(): void {
     this.form.formGroup.controls.remainigMoney.disable();
 
     this.form.formGroup.controls['moneyPaid'].valueChanges.subscribe(
@@ -96,6 +110,26 @@ export class FormVehicleComponent implements OnInit {
         }
       }
     );
+  }
+
+  validateRegistrationStates(
+    serviceState: string,
+    startDate: Date,
+    endDate: Date
+  ): void {
+    this.disableSaveButton = serviceState === 'PAGADO' ? true : false;
+    this.numberServiceHours = 0;
+    const entryDate = new Date(startDate);
+    const departureDate =
+      serviceState === 'PAGADO' ? new Date(endDate) : new Date();
+    this.calculateTotalHoursService(entryDate, departureDate);
+  }
+
+  calculateTotalHoursService(entryDate: Date, departureDate: Date): void {
+    const diffInHours =
+      (departureDate.getTime() - entryDate.getTime()) / (1000 * 60 * 60);
+    const diffInHoursRounded = Math.round(diffInHours);
+    this.numberServiceHours = diffInHoursRounded;
   }
 
   cleanForm(): void {

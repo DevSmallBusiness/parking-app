@@ -31,6 +31,24 @@
     padding: styles.$box-pad-half;
     max-width: styles.$box-wth-column-list;
 
+    &--PAGADO {
+      .text {
+        color: styles.$color-status-success-dark;
+      }
+    }
+
+    &--PENDIENTE {
+      .text {
+        color: styles.$color-status-error-dark;
+      }
+    }
+
+    &--VENCIDO {
+      .text {
+        color: styles.$color-status-error;
+      }
+    }
+
     &--buttons {
       display: flex;
       justify-content: center;
