@@ -83,12 +83,18 @@ export class VehiclesRecordsListComponent implements OnChanges {
     let serviceState: ServiceStatesEnum;
     let remainingMoney = 0;
 
-    console.log(vehicleRecord);
-
     if (vehicleRecord?.typeService === 'Por Mes') {
       const currentDate = new Date();
-      currentDate.setMonth(currentDate.getMonth() + 1);
-      vehicleRecord.departureDate = currentDate;
+      const entryDate = new Date(vehicleRecord.entryDate);
+      entryDate.setHours(currentDate.getHours());
+      entryDate.setMinutes(currentDate.getMinutes());
+      vehicleRecord.entryDate = entryDate;
+
+      const copyEntryDate = new Date(entryDate);
+      copyEntryDate.setMonth(copyEntryDate.getMonth() + 1);
+      vehicleRecord.departureDate = copyEntryDate;
+    } else {
+      vehicleRecord.entryDate = new Date();
     }
 
     if (vehicleRecord?.receivableValue > 0) {
@@ -109,7 +115,6 @@ export class VehiclesRecordsListComponent implements OnChanges {
 
     vehicleRecord.serviceState = serviceState;
     vehicleRecord.remainigMoney = remainingMoney;
-    vehicleRecord.entryDate = new Date();
     this.createVehicleRecord.emit(vehicleRecord);
   }
 

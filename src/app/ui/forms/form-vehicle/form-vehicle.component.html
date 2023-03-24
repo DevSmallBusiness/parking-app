@@ -39,22 +39,31 @@
       [formControlName]="form.formControlNames.ownerNumber"
     ></parking-sub-form-input>
 
+    <parking-sub-form-date
+      [label]="'Fecha de Ingreso'"
+      [icon]="'calendar'"
+      [isEntryDate]="true"
+      [formControlName]="form.formControlNames.entryDate"
+    ></parking-sub-form-date>
+  </fieldset>
+
+  <fieldset class="form-vehicle-record__section">
     <parking-sub-form-input
       [type]="'number'"
       [label]="'Valor a cobrar'"
       [icon]="'wallet-alt'"
       [formControlName]="form.formControlNames.receivableValue"
     ></parking-sub-form-input>
-  </fieldset>
 
-  <fieldset class="form-vehicle-record__section">
     <parking-sub-form-input
       [type]="'number'"
       [label]="'Abono'"
       [icon]="'wallet-alt'"
       [formControlName]="form.formControlNames.moneyPaid"
     ></parking-sub-form-input>
+  </fieldset>
 
+  <fieldset class="form-vehicle-record__section">
     <parking-sub-form-input
       [type]="'number'"
       [label]="'Restante'"
